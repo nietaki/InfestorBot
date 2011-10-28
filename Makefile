@@ -11,6 +11,10 @@ OBJECTS=$(SOURCES:.cc=.o)
 OBJECTS_WITH_LOCATION=$(addprefix $(ODIR)/, $(OBJECTS))
 EXECUTABLE=MyBot
 
+ZIPNAME=tosubmit
+DATE=today
+FULLZIPNAME=$(ZIPNAME).zip
+
 #Uncomment the following to enable debugging
 #CFLAGS+=-g -DDEBUG
 
@@ -22,9 +26,15 @@ $(EXECUTABLE): $(OBJECTS)
 .cc.o: *.h
 	$(CC) $(CFLAGS) $< -o $(ODIR)/$@
 
+zip: $(FULLZIPNAME)
+
+$(FULLZIPNAME):
+	touch $(EXEDIR)/$(FULLZIPNAME)
+
 clean: 
-	-rm -f ${EXECUTABLE} ${OBJECTS} *.d
+	#-rm -f ${EXECUTABLE} ${OBJECTS} *.d
+	-rm -f ${EXEDIR}/$(EXECUTABLE) $(EXEDIR)/$(FULLZIPNAME) ${ODIR}/*.o *.d
 	-rm -f debug.txt
 
-.PHONY: all clean
+.PHONY: all clean zip
 
