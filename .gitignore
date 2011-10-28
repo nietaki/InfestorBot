@@ -1,0 +1,4 @@
+bin/*.run
+bin/*.zip
+obj/*.o
+obj/*.d

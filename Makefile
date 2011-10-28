@@ -2,6 +2,7 @@ CC=g++
 CFLAGS=-O3 -funroll-loops -c
 LDFLAGS=-O2 -lm
 
+SRCDIR=src
 ODIR=obj#object directory
 EXEDIR=bin
 SOURCES=Bot.cc MyBot.cc State.cc
@@ -25,10 +26,10 @@ FULLZIPNAME=$(ZIPNAME).zip
 #Uncomment the following to enable debugging
 #CFLAGS+=-g -DDEBUG
 
-all: $(OBJECTS_WITH_LOCATION) $(EXECUTABLE)
+all: $(OBJECTS) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(ODIR)/$@ 
+	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(EXEDIR)/$@ 
 
 .cc.o: *.h
 	$(CC) $(CFLAGS) $< -o $(ODIR)/$@
@@ -36,7 +37,8 @@ $(EXECUTABLE): $(OBJECTS)
 zip: $(FULLZIPNAME)
 
 $(FULLZIPNAME):
-	touch $(EXEDIR)/$(FULLZIPNAME)
+	rm -f $(EXEDIR)/*.zip
+	zip -j $(EXEDIR)/$(FULLZIPNAME) $(SRCDIR)/*
 
 clean: 
 	#-rm -f ${EXECUTABLE} ${OBJECTS} *.d
