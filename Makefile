@@ -1,15 +1,22 @@
 CC=g++
 CFLAGS=-O3 -funroll-loops -c
 LDFLAGS=-O2 -lm
-VPATH=src#code directory
+
 ODIR=obj#object directory
 EXEDIR=bin
 SOURCES=Bot.cc MyBot.cc State.cc
 #SOURCES=*.cc #TODO
 
 OBJECTS=$(SOURCES:.cc=.o)
+
+vpath %.cc src
+vpath %.h src
+vpath %.o obj
+vpath %.zip bin
+vpath %.run bin
+
 OBJECTS_WITH_LOCATION=$(addprefix $(ODIR)/, $(OBJECTS))
-EXECUTABLE=MyBot
+EXECUTABLE=MyBot.run
 
 ZIPNAME=tosubmit
 DATE=today
@@ -18,10 +25,10 @@ FULLZIPNAME=$(ZIPNAME).zip
 #Uncomment the following to enable debugging
 #CFLAGS+=-g -DDEBUG
 
-all: $(OBJECTS) $(EXECUTABLE)
+all: $(OBJECTS_WITH_LOCATION) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(EXEDIR)/$@ 
+	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(ODIR)/$@ 
 
 .cc.o: *.h
 	$(CC) $(CFLAGS) $< -o $(ODIR)/$@
@@ -33,7 +40,7 @@ $(FULLZIPNAME):
 
 clean: 
 	#-rm -f ${EXECUTABLE} ${OBJECTS} *.d
-	-rm -f ${EXEDIR}/$(EXECUTABLE) $(EXEDIR)/$(FULLZIPNAME) ${ODIR}/*.o *.d
+	-rm -f ${EXEDIR}/.run $(EXEDIR)/*.zip ${ODIR}/*.o $(ODIR)/*.d
 	-rm -f debug.txt
 
 .PHONY: all clean zip
