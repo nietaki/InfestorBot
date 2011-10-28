@@ -2,3 +2,4 @@ bin/*.run
 bin/*.zip
 obj/*.o
 obj/*.d
+tools/game_logs/*
