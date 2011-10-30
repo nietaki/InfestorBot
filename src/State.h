@@ -31,6 +31,7 @@ struct State {
 		/*
 		 Variables
 		 */
+		static State* _instance;
 		int rows, cols, turn, turns, noPlayers;
 		double attackradius, spawnradius, viewradius;
 		double loadtime, turntime;
@@ -51,9 +52,10 @@ struct State {
 		State();
 		State(State const&){};
 		State& operator=(State const&){};
-		static State* _instance;
+
 
 	public:
+
 		static State* instance();
 		~State();
 

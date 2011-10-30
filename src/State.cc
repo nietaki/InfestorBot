@@ -2,6 +2,7 @@
 
 using namespace std;
 
+State* State::_instance = NULL;
 //constructor
 State::State() {
 	gameover = 0;
@@ -20,8 +21,7 @@ State* State::instance() {
 	if (!State::_instance) {
 		State::_instance = new State;
 	}
-//	return _instance;
-	return new State;
+	return _instance;
 }
 
 //sets the state up
