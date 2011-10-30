@@ -2,7 +2,10 @@
 
 using namespace std;
 
+
+//TODO determine why this is necessary
 State* State::_instance = NULL;
+
 //constructor
 State::State() {
 	gameover = 0;
