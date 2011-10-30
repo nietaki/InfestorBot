@@ -5,7 +5,7 @@ LDFLAGS=-O2 -lm
 SRCDIR=src
 ODIR=obj#object directory
 EXEDIR=bin
-SOURCES=InfestorBot.cc MyBot.cc State.cc
+SOURCES=InfestorBot.cc MyBot.cc State.cc  Bucketable.cc BucketableLocationListener.cc NotImplementedException.cc
 #SOURCES=*.cc #TODO
 
 OBJECTS=$(SOURCES:.cc=.o)
