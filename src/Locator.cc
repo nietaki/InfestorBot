@@ -5,19 +5,19 @@
  *      Author: nietaki
  */
 
-#include "Bucketable.h"
+#include "Locator.h"
 
 using namespace std;
 
-Bucketable::Bucketable() {
+Locator::Locator() {
 
 }
 
-Bucketable::~Bucketable() {
+Locator::~Locator() {
 	//no need to destroy the Buckets, they will be destroyed by sbd else
 }
 
-void Bucketable::setLocation(Location inLocation)
+void Locator::setLocation(Location inLocation)
 {
 	Location from, to;
 	from = loc;
@@ -25,24 +25,24 @@ void Bucketable::setLocation(Location inLocation)
 	notifyListeners(from);
 }
 
-Location Bucketable::getLocation() {
+Location Locator::getLocation() {
 	return loc;
 }
 
-bool Bucketable::addLocationListener(BucketableLocationListener *inListener) {
+bool Locator::addListener(LocationListener *inListener) {
 	return locationListeners.insert(inListener).second;
 }
 
-bool Bucketable::removeLocationListener(BucketableLocationListener *inListener) {
+bool Locator::removeListener(LocationListener *inListener) {
 	return (locationListeners.erase(inListener) != 0);
 }
 
 /*
  * the "to" location is the current location already
  */
-void Bucketable::notifyListeners(Location from)
+void Locator::notifyListeners(Location from)
 {
-	set<BucketableLocationListener*>::iterator it;
+	set<LocationListener*>::iterator it;
 	for(it = locationListeners.begin(); it != locationListeners.end(); it++){
 		(*it)->changedLocation(this, from, this->getLocation());
 	}

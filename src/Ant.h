@@ -8,9 +8,9 @@
 #ifndef ANT_H_
 #define ANT_H_
 
-#include "Bucketable.h"
+#include "Locator.h"
 
-class Ant: public Bucketable {
+class Ant: public Locator {
 	private:
 		const static int OWNER_ME = 0;
 		int owner;
