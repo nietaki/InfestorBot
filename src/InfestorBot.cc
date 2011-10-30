@@ -1,15 +1,15 @@
-#include "Bot.h"
+#include "InfestorBot.h"
 
 using namespace std;
 
 //constructor
-Bot::Bot()
+InfestorBot::InfestorBot()
 {
 
 };
 
 //plays a single game of Ants.
-void Bot::playGame()
+void InfestorBot::playGame()
 {
     //reads the game parameters and sets up
     cin >> state;
@@ -26,7 +26,7 @@ void Bot::playGame()
 };
 
 //makes the bots moves for the turn
-void Bot::makeMoves()
+void InfestorBot::makeMoves()
 {
     state.bug << "turn " << state.turn << ":" << endl;
     state.bug << state << endl;
@@ -50,7 +50,7 @@ void Bot::makeMoves()
 };
 
 //finishes the turn
-void Bot::endTurn()
+void InfestorBot::endTurn()
 {
     if(state.turn > 0)
         state.reset();

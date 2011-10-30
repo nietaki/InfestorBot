@@ -1,4 +1,4 @@
-#include "Bot.h"
+#include "InfestorBot.h"
 
 using namespace std;
 
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 {
     cout.sync_with_stdio(0); //this line makes your bot faster
 
-    Bot bot;
+    InfestorBot bot;
     bot.playGame();
 
     return 0;

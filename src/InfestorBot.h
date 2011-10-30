@@ -1,16 +1,16 @@
-#ifndef BOT_H_
-#define BOT_H_
+#ifndef INFESTOR_BOT_H_
+#define INFESTOR_BOT_H_
 
 #include "State.h"
 
 /*
     This struct represents your bot in the game of Ants
 */
-struct Bot
+struct InfestorBot
 {
     State state;
 
-    Bot();
+    InfestorBot();
 
     void playGame();    //plays a single game of Ants
 
@@ -18,4 +18,4 @@ struct Bot
     void endTurn();     //indicates to the engine that it has made its moves
 };
 
-#endif //BOT_H_
+#endif //INFESTOR_BOT_H_
