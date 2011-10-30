@@ -17,7 +17,7 @@ vpath %.zip bin
 vpath %.run bin
 
 OBJECTS_WITH_LOCATION=$(addprefix $(ODIR)/, $(OBJECTS))
-EXECUTABLE=MyBot.run
+EXECUTABLE=InfestorBot.run
 
 ZIPNAME=tosubmit
 DATE=today
@@ -42,7 +42,7 @@ $(FULLZIPNAME):
 
 clean: 
 	#-rm -f ${EXECUTABLE} ${OBJECTS} *.d
-	-rm -f ${EXEDIR}/.run $(EXEDIR)/*.zip ${ODIR}/*.o $(ODIR)/*.d
+	-rm -f ${EXEDIR}/*.run $(EXEDIR)/*.zip ${ODIR}/*.o $(ODIR)/*.d
 	-rm -f debug.txt
 
 .PHONY: all clean zip
