@@ -5,7 +5,10 @@ LDFLAGS=-O2 -lm
 SRCDIR=src
 ODIR=obj#object directory
 EXEDIR=bin
-SOURCES=InfestorBot.cc MyBot.cc State.cc  Bucketable.cc BucketableLocationListener.cc NotImplementedException.cc
+## LEGACY CLASS LISTING
+#SOURCES=InfestorBot.cc MyBot.cc State.cc Bucketable.cc BucketableLocationListener.cc NotImplementedException.cc
+SOURCES1=$(wildcard src/*.cc)
+SOURCES=$(subst src/,,$(SOURCES1))
 #SOURCES=*.cc #TODO
 
 OBJECTS=$(SOURCES:.cc=.o)

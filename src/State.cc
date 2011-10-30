@@ -146,11 +146,11 @@ istream& operator>>(istream &is, State &state) {
 
 	//finds out which turn it is
 	while (is >> inputType) {
-		if (inputType == "end") {
+		if (inputType == "end") {//end game
 			state.gameover = 1;
 			break;
 		} else if (inputType == "turn") {
-			is >> state.turn;
+			is >> state.turn; //turn no
 			break;
 		} else
 			//unknown line
@@ -213,7 +213,7 @@ istream& operator>>(istream &is, State &state) {
 			{
 				is >> row >> col >> player;
 				state.grid[row][col].deadAnts.push_back(player);
-			} else if (inputType == "h") {
+			} else if (inputType == "h") { //hill
 				is >> row >> col >> player;
 				state.grid[row][col].isHill = 1;
 				state.grid[row][col].hillPlayer = player;
