@@ -8,10 +8,8 @@
 #include "AntManager.h"
 
 AntManager::AntManager() {
-	// TODO Auto-generated constructor stub
 
 }
 
 AntManager::~AntManager() {
-	// TODO Auto-generated destructor stub
 }

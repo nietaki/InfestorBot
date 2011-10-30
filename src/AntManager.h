@@ -12,7 +12,6 @@
 #include <boost/weak_ptr.hpp>
 #include "Ant.h"
 
-typedef
 
 class AntManager {
 	public:

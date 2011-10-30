@@ -12,25 +12,55 @@
 #include "LocationListener.h"
 #include <set>
 
+template <typename U>
 class LocationListener;
 
+template <typename T>
 class Locator {
 	private:
+		T* tracked_item;
 		Location loc;
-		std::set<LocationListener*> locationListeners;
-	public:
-		Locator();
-		virtual ~Locator();
-		Location getLocation();
-		void setLocation(Location inLocation);
 
+		std::set<LocationListener<T>*>  locationListeners;
+	public:
+		Locator(T* inTrackedItem) : tracked_item(inTrackedItem) {
+
+		}
+		virtual ~Locator(){
+			//TODO unregister any listeners? if not, copy the inscription to the listener
+		}
+		Location getLocation(){
+			return loc;
+		}
+		void setLocation(Location inLocation){
+			Location from, to;
+			from = loc;
+			loc = inLocation;
+			notifyListeners(from);
+		}
 		/* location listeners */
 
-		bool addListener(LocationListener* inListener);
-		bool removeListener(LocationListener* inListener);
+		bool addListener(LocationListener<T>* inListener){
+			return locationListeners.insert(inListener).second;
+		}
 
-	private:
-		void notifyListeners(Location from);
+		bool removeListener(LocationListener<T>* inListener){
+			return (locationListeners.erase(inListener) != 0);
+		}
+
+	protected:
+		/*
+		 * the "to" location is the current location already
+		 */
+
+
+		void notifyListeners(Location from){
+
+			typename std::set<LocationListener < T > * > ::iterator  it;
+			for(it = locationListeners.begin(); it != locationListeners.end(); it++){
+				(*it)->changedLocation(tracked_item, from, getLocation());
+			}
+		}
 
 };
 

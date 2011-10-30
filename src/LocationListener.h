@@ -8,16 +8,27 @@
 #ifndef LOCATIONLISTENER_H_
 #define LOCATIONLISTENER_H_
 #include "Locator.h"
+#include "Location.h"
+#include "NotImplementedException.h"
+
 
 using namespace std;
 
+template <typename U>
 class Locator; //forward declaration
 
+template <typename T>
 class LocationListener {
 	public:
-		LocationListener();
-		virtual ~LocationListener();
-		virtual int changedLocation(Locator* inBucketable, Location from, Location to);
+		LocationListener(){
+
+		}
+		virtual ~LocationListener(){
+
+		}
+		virtual int changedLocation(T* inTrackedObject, Location from, Location to){
+			throw NotImplementedException();
+		}
 };
 
 
