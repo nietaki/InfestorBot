@@ -10,11 +10,13 @@
 #include <queue>
 #include <stack>
 #include <stdint.h>
+#include <set>
 
 #include "Timer.h"
 #include "Bug.h"
 #include "Square.h"
 #include "Location.h"
+#include "BucketableManager.h"
 
 /*
  constants
@@ -22,6 +24,8 @@
 const int TDIRECTIONS = 4;
 const char CDIRECTIONS[4] = { 'N', 'E', 'S', 'W' };
 const int DIRECTIONS[4][2] = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } }; //{N, E, S, W}
+
+
 
 /*
  struct to store current state information
@@ -36,6 +40,11 @@ struct State {
 		double attackradius, spawnradius, viewradius;
 		double loadtime, turntime;
 		std::vector<double> scores;
+
+		//my variables
+//		BucketableSet myAnts, foeAnts;
+
+
 		bool gameover;
 		int64_t seed;
 

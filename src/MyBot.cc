@@ -1,5 +1,17 @@
 #include "InfestorBot.h"
 
+////zabawa
+//#include <list>
+//class A {
+//	public:
+//		int a;
+//};
+//
+//class B : public A {
+//	public:
+//		int b;
+//};
+
 using namespace std;
 
 /*
@@ -16,8 +28,17 @@ using namespace std;
 int main(int argc, char *argv[]) {
 	cout.sync_with_stdio(0); //this line makes your bot faster
 
-	InfestorBot bot;
-	bot.playGame();
+
+//	list<A> lista;
+//	B obiektB;
+//	lista.insert(obiektB);
+//	list<A>::iterator itA;
+//	itA = lista.begin();
+//
+//	cout << "cos";
+//	InfestorBot bot;
+//	bot.playGame();
+
 
 	return 0;
 }
