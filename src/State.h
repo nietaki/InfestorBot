@@ -17,50 +17,52 @@
 #include "Location.h"
 
 /*
-    constants
-*/
+ constants
+ */
 const int TDIRECTIONS = 4;
-const char CDIRECTIONS[4] = {'N', 'E', 'S', 'W'};
-const int DIRECTIONS[4][2] = { {-1, 0}, {0, 1}, {1, 0}, {0, -1} };      //{N, E, S, W}
+const char CDIRECTIONS[4] = { 'N', 'E', 'S', 'W' };
+const int DIRECTIONS[4][2] = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } }; //{N, E, S, W}
 
 /*
-    struct to store current state information
-*/
-struct State
-{
-    /*
-        Variables
-    */
-    int rows, cols,
-        turn, turns,
-        noPlayers;
-    double attackradius, spawnradius, viewradius;
-    double loadtime, turntime;
-    std::vector<double> scores;
-    bool gameover;
-    int64_t seed;
+ struct to store current state information
+ */
+struct State {
+	public:
+		/*
+		 Variables
+		 */
+		int rows, cols, turn, turns, noPlayers;
+		double attackradius, spawnradius, viewradius;
+		double loadtime, turntime;
+		std::vector<double> scores;
+		bool gameover;
+		int64_t seed;
 
-    std::vector<std::vector<Square> > grid;
-    std::vector<Location> myAnts, enemyAnts, myHills, enemyHills, food;
+		std::vector<std::vector<Square> > grid;
+		std::vector<Location> myAnts, enemyAnts, myHills, enemyHills, food;
 
-    Timer timer;
-    Bug bug;
+		Timer timer;
+		Bug bug;
 
-    /*
-        Functions
-    */
-    State();
-    ~State();
+		/*
+		 Functions
+		 */
+	private:
+		State();
 
-    void setup();
-    void reset();
+	public:
+		static State getState();
+		~State();
 
-    void makeMove(const Location &loc, int direction);
+		void setup();
+		void reset();
 
-    double distance(const Location &loc1, const Location &loc2);
-    Location getLocation(const Location &startLoc, int direction);
+		void makeMove(const Location &loc, int direction);
 
-    void updateVisionInformation();
+		double distance(const Location &loc1, const Location &loc2);
+		Location getLocation(const Location &startLoc, int direction);
+
+		void updateVisionInformation();
 };
 
 std::ostream& operator<<(std::ostream &os, const State &state);
