@@ -13,7 +13,7 @@ Ant::Ant() : kill_count(0), owner(-1) {
 }
 
 //before Ant is complete you have to set the location
-Ant::Ant(int inOwner) : kill_count(0), owner(inOwner)  {
+Ant::Ant(int inOwner) : kill_count(0), owner(inOwner) {
 }
 
 Ant::~Ant() {
