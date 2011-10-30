@@ -7,7 +7,7 @@
  This struct represents your bot in the game of Ants
  */
 struct InfestorBot {
-		State state;
+		State *state;
 
 		InfestorBot();
 

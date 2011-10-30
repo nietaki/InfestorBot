@@ -49,9 +49,12 @@ struct State {
 		 */
 	private:
 		State();
+		State(State const&){};
+		State& operator=(State const&){};
+		static State* _instance;
 
 	public:
-		static State getState();
+		static State* instance();
 		~State();
 
 		void setup();

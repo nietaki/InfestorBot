@@ -16,6 +16,14 @@ State::~State() {
 }
 ;
 
+State* State::instance() {
+	if (!State::_instance) {
+		State::_instance = new State;
+	}
+//	return _instance;
+	return new State;
+}
+
 //sets the state up
 void State::setup() {
 	grid = vector<vector<Square> > (rows, vector<Square> (cols, Square()));
