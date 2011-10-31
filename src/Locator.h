@@ -56,7 +56,7 @@ class Locator {
 
 		void notifyListeners(Location from){
 
-			typename std::set<LocationListener < T > * > ::iterator  it;
+			typename std::set<LocationListener<T>* >::iterator it;
 			for(it = locationListeners.begin(); it != locationListeners.end(); it++){
 				(*it)->changedLocation(tracked_item, from, getLocation());
 			}

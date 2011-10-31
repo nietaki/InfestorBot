@@ -21,7 +21,7 @@ Ant::Ant(int inOwner) : kill_count(0), owner(inOwner) {
 Ant::~Ant() {
 }
 
-int Ant::getOwner() {
+int Ant::getOwner() const {
 	return owner;
 }
 
@@ -29,7 +29,7 @@ void Ant::setOwner(int playerNo) {
 	owner = playerNo;
 }
 
-bool Ant::isMine() {
+bool Ant::isMine() const {
 	return (owner == Ant::OWNER_ME);
 }
 
@@ -39,11 +39,11 @@ void Ant::setLocation(Location inLocation) {
 
 
 
-Location Ant::getLocation() {
+Location Ant::getLocation() const {
 	return locator->getLocation();
 }
 
-Locator<Ant>& Ant::getLocator() {
+Locator<Ant>& Ant::getLocator() const {
 	return *locator;
 }
 
