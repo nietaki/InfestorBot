@@ -21,12 +21,14 @@ class Ant{
 		int owner;
 		int kill_count;
 		AntLocatorPtr locator;
+//		Ant();
+		Ant(int inOwner);
+		void setLocator(boost::shared_ptr<Locator<Ant> >);
 
 		//TODO Strategy strat;
 
 	public:
-		Ant();
-		Ant(int inOwner);
+		static boost::shared_ptr<Ant> makeAnt(int inOwner);
 		virtual ~Ant();
 
 		bool isMine() const;
@@ -35,7 +37,7 @@ class Ant{
 
 		Location getLocation() const;
 		void setLocation(Location inLocation);
-		Locator<Ant>& getLocator() const;
+//		Locator<Ant>& getLocator() const;
 };
 
 #endif /* ANT_H_ */

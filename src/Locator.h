@@ -11,6 +11,7 @@
 #include "Location.h"
 #include "LocationListener.h"
 #include <set>
+#include <boost/weak_ptr.hpp>
 
 template <typename U>
 class LocationListener;
@@ -18,13 +19,13 @@ class LocationListener;
 template <typename T>
 class Locator {
 	private:
-		T* tracked_item;
+		boost::weak_ptr<T> tracked_item;
 		Location loc;
 
 		std::set<LocationListener<T>*>  locationListeners;
 	public:
-		Locator(T* inTrackedItem) : tracked_item(inTrackedItem) {
-
+		Locator(boost::shared_ptr<T>& inTrackedItem) {
+			tracked_item = inTrackedItem;
 		}
 		virtual ~Locator(){
 			//TODO unregister any listeners? if not, copy the inscription to the listener

@@ -7,6 +7,9 @@
 
 #ifndef LOCATIONLISTENER_H_
 #define LOCATIONLISTENER_H_
+
+#include <boost/shared_ptr.hpp>
+#include <boost/>
 #include "Locator.h"
 #include "Location.h"
 #include "NotImplementedException.h"
@@ -26,7 +29,7 @@ class LocationListener {
 		virtual ~LocationListener(){
 
 		}
-		virtual int changedLocation(T* inTrackedObject, Location from, Location to){
+		virtual int changedLocation(boost::weak_ptr<T> inTrackedObject, Location from, Location to){
 			throw NotImplementedException();
 		}
 };

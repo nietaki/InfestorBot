@@ -5,17 +5,16 @@
  *      Author: nietaki
  */
 
+#include <boost/weak_ptr.hpp>
+//#include <boost/e>
 #include "Ant.h"
 
-Ant::Ant() : kill_count(0), owner(-1) {
-	locator = AntLocatorPtr(new Locator<Ant>(this));
-//	= new Locator<Ant>;
 
-}
 
 //before Ant is complete you have to set the location
 Ant::Ant(int inOwner) : kill_count(0), owner(inOwner) {
-	locator = AntLocatorPtr(new Locator<Ant>(this));
+//	locator = AntLocatorPtr(new Locator<Ant>(this));
+	// locator is set later
 }
 
 Ant::~Ant() {
@@ -33,6 +32,15 @@ bool Ant::isMine() const {
 	return (owner == Ant::OWNER_ME);
 }
 
+boost::shared_ptr<Ant> Ant::makeAnt(int inOwner) {
+	boost::shared_ptr<Ant> newAnt (new Ant(inOwner));
+	boost::shared_ptr<Locator<Ant> > newAntLocator(new Locator<Ant>(newAnt));
+}
+
+void Ant::setLocator(boost::shared_ptr<Locator<Ant> > shared_ptr) {
+
+}
+
 void Ant::setLocation(Location inLocation) {
 	locator->setLocation(inLocation);
 }
@@ -43,9 +51,9 @@ Location Ant::getLocation() const {
 	return locator->getLocation();
 }
 
-Locator<Ant>& Ant::getLocator() const {
-	return *locator;
-}
+//Locator<Ant>& Ant::getLocator() const {
+//	return *locator;
+//}
 
 
 

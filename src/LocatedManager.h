@@ -16,22 +16,44 @@
 
 template <typename T>
 class LocatedManager : public LocationListener<T> {
-
-		typedef std::list<int> intlist;
-		typedef intlist::iterator it1;
-		std::list<int>::iterator it2;
-
-		typedef std::set<T> someset;
-		typedef typename someset::iterator somesetiterator; //compile error
-		typename someset::iterator theiterator; //compile error
-
-
-		typedef std::set<boost::shared_ptr<T> >  myset;
-		typedef typename myset::iterator myiterator; //compile error
-
+	public:
+		typedef typename boost::shared_ptr<T> ItemPtr;
+		typedef typename std::set<boost::shared_ptr<T> > LocatedSet;
+		typedef typename LocatedSet::const_iterator iterator;
 	protected:
+		LocatedSet items_set;
+
 
 	public:
+		iterator add(ItemPtr inPtr) {
+			//TODO fill method body
+		}
+
+		bool remove(ItemPtr inPtr) {
+			return false;
+			//TODO fill method body
+		}
+
+		iterator begin() const {
+			return items_set.begin();
+		}
+
+		iterator end() const {
+			return items_set.begin();
+		}
+
+		iterator find(const ItemPtr& x) const{
+			return items_set.find(x);
+		}
+
+
+		virtual int changedLocation(boost::weak_ptr<T>& inTrackedObject, Location from, Location to){
+			iterator object_iterator = items_set.find(inTrackedObject);
+			if (object_iterator = items_set.end()) {
+
+			}
+			throw NotImplementedException();
+		}
 
 
 		LocatedManager() {

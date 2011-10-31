@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-O3 -funroll-loops -c
+CFLAGS=-O3 -funroll-loops -c -Woverloaded-virtual
 LDFLAGS=-O2 -lm
 
 SRCDIR=src
@@ -45,6 +45,7 @@ $(EXECUTABLE): $(OBJECTS)
 
 
 ### Very special rules for my very special MyBot - override the implicit, which doesn't work for MyBot ###
+#make some kind of rule for Mybot.cc
 MyBot.cc:
 
 MyBot.o: MyBot.cc
