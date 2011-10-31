@@ -34,21 +34,19 @@ bool Ant::isMine() const {
 
 boost::shared_ptr<Ant> Ant::makeAnt(int inOwner) {
 	boost::shared_ptr<Ant> newAnt (new Ant(inOwner));
-	boost::shared_ptr<Locator<Ant> > newAntLocator(new Locator<Ant>(newAnt));
-}
-
-void Ant::setLocator(boost::shared_ptr<Locator<Ant> > shared_ptr) {
 
 }
+
+
 
 void Ant::setLocation(Location inLocation) {
-	locator->setLocation(inLocation);
+	location = inLocation;
 }
 
 
 
 Location Ant::getLocation() const {
-	return locator->getLocation();
+	return location;
 }
 
 //Locator<Ant>& Ant::getLocator() const {

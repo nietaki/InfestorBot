@@ -8,22 +8,19 @@
 #ifndef ANT_H_
 #define ANT_H_
 
-#include "Locator.h"
+
 #include "boost/shared_ptr.hpp"
+#include "Location.h"
 
-class Ant;
-typedef boost::shared_ptr<Locator<Ant> >  AntLocatorPtr;
-
-//TODO check if this makes sense
 class Ant{
 	private:
 		const static int OWNER_ME = 0;
 		int owner;
 		int kill_count;
-		AntLocatorPtr locator;
+		Location location;
+
 //		Ant();
 		Ant(int inOwner);
-		void setLocator(boost::shared_ptr<Locator<Ant> >);
 
 		//TODO Strategy strat;
 
@@ -37,7 +34,7 @@ class Ant{
 
 		Location getLocation() const;
 		void setLocation(Location inLocation);
-//		Locator<Ant>& getLocator() const;
+
 };
 
 #endif /* ANT_H_ */
