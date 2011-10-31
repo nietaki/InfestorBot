@@ -44,7 +44,7 @@ $(EXECUTABLE): $(OBJECTS)
 #echo $*;
 
 
-### Very special rule for my very special MyBot - overrides the implicit, which doesn't work for MyBot ###
+### Very special rules for my very special MyBot - override the implicit, which doesn't work for MyBot ###
 MyBot.cc:
 
 MyBot.o: MyBot.cc
