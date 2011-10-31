@@ -51,9 +51,9 @@ Location Ant::getLocation() const {
 	return locator->getLocation();
 }
 
-//Locator<Ant>& Ant::getLocator() const {
-//	return *locator;
-//}
+Locator<Ant>& Ant::getLocator() const {
+	return *locator;
+}
 
 
 

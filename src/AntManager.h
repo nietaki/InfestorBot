@@ -13,12 +13,25 @@
 #include "Ant.h"
 
 
-class AntManager {
+class AntManager : public LocationListener<Ant> {
+	protected:
+		set<AntPtr > ant_set;
+		set<Locator<Ant> > notifying;
+		//TODO buckets
 	public:
-		AntManager();
-		virtual ~AntManager();
-		bool add(Ant* inAnt);
-		bool remove(Ant* inAnt);
+		AntManager() {
+
+		}
+		virtual ~AntManager() {
+
+		}
+		bool add(AntPtr inAnt) {
+			pair<set<int>::iterator,bool> inserted = ant_set.insert(inAnt);
+
+		}
+		bool remove(AntPtr inAnt){
+
+		}
 };
 
 #endif /* ANTMANAGER_H_ */

@@ -7,9 +7,4 @@
 
 #include "AntManager.h"
 
-AntManager::AntManager() {
-
-}
-
-AntManager::~AntManager() {
-}
+//nothing more here, template class

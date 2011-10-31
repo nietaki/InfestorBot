@@ -25,6 +25,16 @@ class LocatedManager : public LocationListener<T> {
 
 
 	public:
+
+
+		virtual int changedLocation(boost::weak_ptr<T>& inTrackedObject, Location from, Location to){
+			iterator object_iterator = items_set.find(inTrackedObject);
+			if (object_iterator = items_set.end()) {
+
+			}
+			throw NotImplementedException();
+		}
+
 		iterator add(ItemPtr inPtr) {
 			//TODO fill method body
 		}
@@ -44,15 +54,6 @@ class LocatedManager : public LocationListener<T> {
 
 		iterator find(const ItemPtr& x) const{
 			return items_set.find(x);
-		}
-
-
-		virtual int changedLocation(boost::weak_ptr<T>& inTrackedObject, Location from, Location to){
-			iterator object_iterator = items_set.find(inTrackedObject);
-			if (object_iterator = items_set.end()) {
-
-			}
-			throw NotImplementedException();
 		}
 
 

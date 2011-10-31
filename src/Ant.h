@@ -13,6 +13,7 @@
 
 class Ant;
 typedef boost::shared_ptr<Locator<Ant> >  AntLocatorPtr;
+typedef boost::shared_ptr<Ant >  AntPtr;
 
 //TODO check if this makes sense
 class Ant{
@@ -37,7 +38,7 @@ class Ant{
 
 		Location getLocation() const;
 		void setLocation(Location inLocation);
-//		Locator<Ant>& getLocator() const;
+		Locator<Ant>& getLocator() const;
 };
 
 #endif /* ANT_H_ */

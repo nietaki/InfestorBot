@@ -43,9 +43,11 @@ class Locator {
 
 		bool addListener(LocationListener<T>* inListener){
 			return locationListeners.insert(inListener).second;
+			inListener->addLocated(tracked_item);
 		}
 
 		bool removeListener(LocationListener<T>* inListener){
+			inListener->removeLocated(tracked_item);
 			return (locationListeners.erase(inListener) != 0);
 		}
 
