@@ -10,12 +10,17 @@
 
 #include <set>
 #include "LocationListener.h"
+#include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
 
 template <typename T>
 class LocatedManager : public LocationListener<T> {
 	protected:
 		T member;
 	public:
+
+		falkd jaldfkadlf <)>
+
 		LocatedManager() {
 
 		}

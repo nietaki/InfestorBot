@@ -34,9 +34,22 @@ all: $(OBJECTS) $(EXECUTABLE)
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(EXEDIR)/$@ 
 
-.cc.o: *.h
+
+
+#.cc.o: *.h 
+%.o: src/%.cc %.h
 	$(CC) $(CFLAGS) $< -o $(ODIR)/$@
 
+#echo $^;
+#echo $*;
+
+
+### Very special rule for my very special MyBot - overrides the implicit, which doesn't work for MyBot ###
+MyBot.cc:
+
+MyBot.o: MyBot.cc
+	$(CC) $(CFLAGS) $< -o $(ODIR)/$@
+	
 zip: $(FULLZIPNAME)
 
 $(FULLZIPNAME):
@@ -45,7 +58,7 @@ $(FULLZIPNAME):
 
 clean: 
 	#-rm -f ${EXECUTABLE} ${OBJECTS} *.d
-	-rm -f ${EXEDIR}/*.run $(EXEDIR)/*.zip ${ODIR}/*.o $(ODIR)/*.d
+	-rm -f ${EXEDIR}/*.run $(EXEDIR)/*.zip ${ODIR}/*.o $(ODIR)/*.d *.o
 	-rm -f debug.txt
 
 .PHONY: all clean zip
