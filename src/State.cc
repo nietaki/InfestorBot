@@ -3,7 +3,7 @@
 using namespace std;
 
 
-//TODO determine why this is necessary
+//this is weird
 State* State::_instance = NULL;
 
 //constructor

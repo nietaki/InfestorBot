@@ -38,15 +38,15 @@ class AntManager {
 
 		void add(AntPtr inAnt);
 		void remove(AntPtr inAnt);
+		void remove(Location inLocation);
 
 		Grid* getGrid();
 		AntSet* getMovedAnts();
 		AntSet* getWaitingAnts();
 
-		void nextMove();
+		void nextMove(int moveNo);
 
-		//TODO and Buckets
-		//TODO set and Buckets accessors
+		//TODO and Buckets and the accessors
 
 		virtual ~AntManager();
 };

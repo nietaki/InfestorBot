@@ -8,13 +8,15 @@
 #include "Helper.h"
 
 Helper::Helper() {
-	// TODO Auto-generated constructor stub
 
 }
 
 Helper::~Helper() {
-	// TODO Auto-generated destructor stub
-}
+	waitingAnts.insert(inAnt);
+	Square antSquare = Helper::getSquare(gridPtr, inAnt->getLocation());
+	antSquare.ant = inAnt->getOwner();
+	antSquare.antPtr = inAnt;
+	waitingAnts.insert(inAnt);}
 
 Square & Helper::getSquare(Grid *inGrid, const Location& inLocation) {
 	return (*inGrid)[inLocation.col][inLocation.row];
