@@ -50,7 +50,8 @@ struct State {
 		int64_t seed;
 
 		Grid grid;
-		std::vector<Location> myAnts, enemyAnts, myHills, enemyHills, food;
+		std::vector<Location> /*myAnts,*/ enemyAnts, myHills, enemyHills, food;
+
 
 		Timer timer;
 		Bug bug;

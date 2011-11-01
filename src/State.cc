@@ -1,5 +1,6 @@
 #include "State.h"
-
+#include "Ant.h"
+#include "AntManager.h"
 using namespace std;
 
 
@@ -35,7 +36,7 @@ void State::setup() {
 
 //resets all non-water squares to land and clears the bots ant vector
 void State::reset() {
-	myAnts.clear();
+	//should we do anything with our ants?
 	enemyAnts.clear();
 	myHills.clear();
 	enemyHills.clear();
@@ -88,8 +89,14 @@ void State::updateVisionInformation() {
 	std::queue<Location> locQueue;
 	Location sLoc, cLoc, nLoc;
 
-	for (int a = 0; a < (int) myAnts.size(); a++) {
-		sLoc = myAnts[a];
+	//TODO check if I reworked this right
+//	for (int a = 0; a < (int) myAnts.size(); a++) {
+	AntSet* myAnts = AntManager::instance()->getWaitingAnts();
+	//->getWaitingAnts();
+	AntSet::const_iterator it;
+	for(it = myAnts->begin(); it != myAnts->end(); it++){
+		sLoc = (*it)->getLocation();
+//		sLoc = myAnts[a];
 		locQueue.push(sLoc);
 
 		std::vector<std::vector<bool> > visited(rows, std::vector<bool>(cols, 0));
@@ -210,10 +217,12 @@ istream& operator>>(istream &is, State &state) {
 			{
 				is >> row >> col >> player;
 				state.grid[row][col].ant = player;
-				if (player == 0)
-
-					state.myAnts.push_back(Location(row, col));
-				else
+				if (player == 0){
+					//breaking stuff
+					//state.myAnts.push_back(Location(row, col));
+					AntPtr newAnt = Ant::makeAnt(0, Location(row, col));
+					AntManager::instance()->add(newAnt);
+				}else
 					state.enemyAnts.push_back(Location(row, col));
 			} else if (inputType == "d") //dead ant square
 			{

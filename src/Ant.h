@@ -20,7 +20,7 @@ class Ant{
 		const static int OWNER_ME = 0;
 		int owner;
 		int kill_count;
-		int last_move_no;
+		int last_turn_moved;
 		Location location;
 
 //		Ant();
@@ -33,6 +33,7 @@ class Ant{
 		virtual ~Ant();
 
 		bool isMine() const;
+		bool hasMoved() const;
 		int getOwner() const;
 		void setOwner(int playerNo);
 

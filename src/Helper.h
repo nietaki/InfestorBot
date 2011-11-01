@@ -9,6 +9,7 @@
 #define HELPER_H_
 
 #include "Square.h"
+#include "State.h"
 
 class Helper {
 	private:
@@ -16,6 +17,7 @@ class Helper {
 	public:
 		virtual ~Helper();
 		static Square& getSquare(Grid* inGrid, const Location& inLocation);
+		static int getTurnNo();
 };
 
 #endif /* HELPER_H_ */

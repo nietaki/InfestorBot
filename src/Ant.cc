@@ -8,13 +8,14 @@
 #include <boost/weak_ptr.hpp>
 //#include <boost/e>
 #include "Ant.h"
+#include "Helper.h"
+
 
 
 
 //before Ant is complete you have to set the location
 Ant::Ant(int inOwner, Location startingLocation) : owner(inOwner), kill_count(0), location(startingLocation) {
-//	locator = AntLocatorPtr(new Locator<Ant>(this));
-	// locator is set later
+	last_turn_moved = 0;
 }
 
 Ant::~Ant() {
@@ -38,6 +39,10 @@ boost::shared_ptr<Ant> Ant::makeAnt(int inOwner, Location startingLocation) {
 }
 
 
+
+bool Ant::hasMoved() const {
+	return (last_turn_moved >= Helper::getTurnNo());
+}
 
 void Ant::setLocation(Location inLocation) {
 	location = inLocation;

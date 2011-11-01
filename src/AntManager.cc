@@ -33,7 +33,6 @@ AntSet *AntManager::getWaitingAnts() {
 void AntManager::add(AntPtr inAnt) {
 	waitingAnts.insert(inAnt);
 	Square antSquare = Helper::getSquare(gridPtr, inAnt->getLocation());
-	antSquare.ant = inAnt->getOwner();
 	antSquare.antPtr = inAnt;
 	waitingAnts.insert(inAnt);
 }
@@ -55,7 +54,6 @@ void AntManager::remove(AntPtr inAnt) {
 	movedAnts.erase(inAnt); //FIXME this shouldn't be neccessary
 
 	Square antSquare = Helper::getSquare(gridPtr, inAnt->getLocation());
-	antSquare.ant = -1;//no ant
 	antSquare.antPtr.reset();
 }
 

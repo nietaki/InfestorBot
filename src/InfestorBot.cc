@@ -15,6 +15,7 @@ void InfestorBot::playGame() {
 	cin >> *state;
 	state->setup();
 	AntManager::instance()->setGrid(& state->grid);
+
 	endTurn();
 
 
@@ -32,18 +33,18 @@ void InfestorBot::makeMoves() {
 	state->bug << "turn " << state->turn << ":" << endl;
 	state->bug << state << endl;
 
-
+	//FIXME no moves picked for now
 	//picks out moves for each ant
-	for (int ant = 0; ant < (int) state->myAnts.size(); ant++) {
-		for (int d = 0; d < TDIRECTIONS; d++) {
-			Location loc = state->getLocation(state->myAnts[ant], d);
-
-			if (!state->grid[loc.row][loc.col].isWater) {
-				state->makeMove(state->myAnts[ant], d);
-				break;
-			}
-		}
-	}
+//	for (int ant = 0; ant < (int) state->myAnts.size(); ant++) {
+//		for (int d = 0; d < TDIRECTIONS; d++) {
+//			Location loc = state->getLocation(state->myAnts[ant], d);
+//
+//			if (!state->grid[loc.row][loc.col].isWater) {
+//				state->makeMove(state->myAnts[ant], d);
+//				break;
+//			}
+//		}
+//	}
 
 	state->bug << "time taken: " << state->timer.getTime() << "ms" << endl << endl;
 }

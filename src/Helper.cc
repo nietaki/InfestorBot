@@ -15,7 +15,13 @@ Helper::~Helper() {
 }
 
 Square & Helper::getSquare(Grid *inGrid, const Location& inLocation) {
-	return (*inGrid)[inLocation.col][inLocation.row];
+	return (*inGrid)[inLocation.row][inLocation.col];
 }
+
+int Helper::getTurnNo() {
+	return State::instance()->turn;
+}
+
+
 
 
