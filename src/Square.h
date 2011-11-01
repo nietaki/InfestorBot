@@ -2,10 +2,10 @@
 #define SQUARE_H_
 
 #include <vector>
-#include "Ant.h"
 #include <boost/shared_ptr.hpp>
 #include <vector>
 
+#include "Ant.h"
 class Square;
 typedef std::vector<std::vector<Square> > Grid;
 

@@ -11,6 +11,7 @@
 
 #include "boost/shared_ptr.hpp"
 #include "Location.h"
+#include "State.h"
 
 class Ant;
 typedef boost::shared_ptr<Ant> AntPtr;

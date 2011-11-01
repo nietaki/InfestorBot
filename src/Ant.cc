@@ -5,10 +5,8 @@
  *      Author: nietaki
  */
 
-#include <boost/weak_ptr.hpp>
-//#include <boost/e>
 #include "Ant.h"
-#include "Helper.h"
+
 
 
 
@@ -19,6 +17,7 @@ Ant::Ant(int inOwner, Location startingLocation) : owner(inOwner), kill_count(0)
 }
 
 Ant::~Ant() {
+	State::instance()->bug << "an Ant destroyed";
 }
 
 int Ant::getOwner() const {
@@ -41,7 +40,7 @@ boost::shared_ptr<Ant> Ant::makeAnt(int inOwner, Location startingLocation) {
 
 
 bool Ant::hasMoved() const {
-	return (last_turn_moved >= Helper::getTurnNo());
+	return (last_turn_moved >= State::instance()->turn);
 }
 
 void Ant::setLocation(Location inLocation) {

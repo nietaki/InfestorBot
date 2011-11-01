@@ -13,7 +13,6 @@
 #include <set>
 #include <vector>
 
-#include "Helper.h"
 #include "Ant.h"
 #include "Square.h"
 

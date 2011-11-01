@@ -32,6 +32,8 @@ void AntManager::add(AntPtr inAnt) {
 	Square antSquare = State::instance()->getSquare(inAnt->getLocation());
 	antSquare.antPtr = inAnt;
 	ants.insert(inAnt);
+
+	State::instance()->bug << "Ant " << inAnt << " added to " << inAnt->getLocation() << std::endl;
 }
 
 void AntManager::setGrid(Grid *inGrid) {
@@ -44,6 +46,7 @@ void AntManager::remove(Location inLocation){
 	if(antSquare.antPtr){
 		remove(antSquare.antPtr);
 	}
+	ants.remove(inAnt);
 }
 
 void AntManager::remove(AntPtr inAnt) {
@@ -67,7 +70,7 @@ void AntManager::makeMove(Location fromLocation, int direction) {
 	AntPtr movingAnt = fromSquare.antPtr;
 	//change Ant's location
 	state->bug << movingAnt << std::endl;
-//	state->bug << fromLocation << std::endl;
+	state->bug << fromLocation << std::endl;
 	movingAnt->setLocation(toLocation);
 
 	//move ant on the Grid
