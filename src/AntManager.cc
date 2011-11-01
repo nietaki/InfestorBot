@@ -7,18 +7,17 @@
 
 #include "AntManager.h"
 
-boost::shared_ptr<AntManager> AntManager::_instance;
+AntManager* AntManager::_instance;
 
 AntManager::AntManager() {
 
 }
 
-AntManager AntManager::instance() {
-	if(AntManager::_instance){
-		//this in fact is the idiom used with shared_ptr
-		boost::shared_ptr<AntManager> tmp(new AntManager());
-		AntManager::_instance = tmp;
+AntManager *AntManager::instance() {
+	if(! AntManager::_instance){
+		AntManager::_instance = new AntManager();
 	}
+	return AntManager::_instance;
 }
 
 AntSet & AntManager::getMovedAnts() {

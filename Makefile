@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-O3 -funroll-loops -c -Woverloaded-virtual
+CFLAGS=-O3 -funroll-loops -Wall -c -Woverloaded-virtual
 LDFLAGS=-O2 -lm
 
 SRCDIR=src

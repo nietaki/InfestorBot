@@ -14,7 +14,7 @@ void InfestorBot::playGame() {
 	//reads the game parameters and sets up
 	cin >> *state;
 	state->setup();
-	AntManager::instance().setGrid(& state->grid);
+	AntManager::instance()->setGrid(& state->grid);
 	endTurn();
 
 

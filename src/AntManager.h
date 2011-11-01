@@ -25,10 +25,13 @@ class AntManager {
 		AntSet movedAnts, waitingAnts;
 		Grid* gridPtr;
 
+		static AntManager* _instance;
+
+
 
 	public:
-		static boost::shared_ptr<AntManager> _instance;
-		static AntManager instance();
+
+		static AntManager *instance();
 
 		//setup is always a pain ;)
 		void setGrid(Grid *inGrid);
