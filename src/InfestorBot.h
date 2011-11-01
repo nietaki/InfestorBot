@@ -1,6 +1,7 @@
 #ifndef INFESTOR_BOT_H_
 #define INFESTOR_BOT_H_
 
+#include <cstdlib>
 #include "State.h"
 #include "AntManager.h"
 
@@ -9,7 +10,7 @@
  */
 struct InfestorBot {
 		State *state;
-
+		AntManager *antManager;
 		InfestorBot();
 
 		void playGame(); //plays a single game of Ants

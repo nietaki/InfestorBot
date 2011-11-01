@@ -65,10 +65,10 @@ void AntManager::makeMove(Location fromLocation, int direction) {
 	Square fromSquare = state->getSquare(fromLocation);
 	Square toSquare = state->getSquare(toLocation);
 	AntPtr movingAnt = fromSquare.antPtr;
-
 	//change Ant's location
 	movingAnt->setLocation(toLocation);
 
+	return;
 	//move ant on the Grid
 	fromSquare.antPtr.reset();
 	toSquare.antPtr = movingAnt;

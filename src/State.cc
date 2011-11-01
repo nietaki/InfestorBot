@@ -1,6 +1,5 @@
 #include "State.h"
-#include "Ant.h"
-#include "AntManager.h"
+
 using namespace std;
 
 
@@ -182,9 +181,10 @@ istream& operator>>(istream &is, State &state) {
 				is >> state.cols;
 			else if (inputType == "turns")
 				is >> state.turns;
-			else if (inputType == "player_seed")
+			else if (inputType == "player_seed"){
 				is >> state.seed;
-			else if (inputType == "viewradius2") {
+				srand(state.seed);
+			}else if (inputType == "viewradius2") {
 				is >> state.viewradius2;
 				state.viewradius = sqrt(state.viewradius2);
 			} else if (inputType == "attackradius2") {

@@ -47,6 +47,7 @@ struct Bug {
 inline Bug& operator<<(Bug &bug, std::ostream& (*manipulator)(std::ostream&)) {
 #ifdef DEBUG
 	bug.file << manipulator;
+	bug.file.flush();
 #endif
 
 	return bug;
