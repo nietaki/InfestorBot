@@ -15,9 +15,11 @@
 
 #include "Ant.h"
 #include "Square.h"
+#include "State.h"
 
 
-typedef std::set<boost::shared_ptr<Ant> > AntSet;
+
+
 
 class AntManager {
 

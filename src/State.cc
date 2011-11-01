@@ -220,6 +220,7 @@ istream& operator>>(istream &is, State &state) {
 				if (player == 0){
 					//breaking stuff
 					//state.myAnts.push_back(Location(row, col));
+					//TODO sth against re-adding existing ants
 					AntPtr newAnt = Ant::makeAnt(0, Location(row, col));
 					AntManager::instance()->add(newAnt);
 				}else

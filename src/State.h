@@ -13,7 +13,7 @@
 #include <set>
 #include <cstdlib>
 
-#include "Ant.h"
+//#include "Ant.h"
 #include "Timer.h"
 #include "Bug.h"
 #include "Square.h"

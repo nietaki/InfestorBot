@@ -8,13 +8,16 @@
 #ifndef ANT_H_
 #define ANT_H_
 
+#include <set>
+#include <boost/shared_ptr.hpp>
 
-#include "boost/shared_ptr.hpp"
 #include "Location.h"
-#include "State.h"
+//#include "State.h"
 
 class Ant;
 typedef boost::shared_ptr<Ant> AntPtr;
+typedef std::set<boost::shared_ptr<Ant> > AntSet;
+
 
 class Ant{
 	private:
