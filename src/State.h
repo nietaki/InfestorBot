@@ -16,6 +16,7 @@
 #include "Bug.h"
 #include "Square.h"
 #include "Location.h"
+#include "AntManager.h"
 
 /*
  constants
@@ -47,7 +48,7 @@ struct State {
 		bool gameover;
 		int64_t seed;
 
-		std::vector<std::vector<Square> > grid;
+		Grid grid;
 		std::vector<Location> myAnts, enemyAnts, myHills, enemyHills, food;
 
 		Timer timer;

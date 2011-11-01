@@ -12,7 +12,7 @@
 
 
 //before Ant is complete you have to set the location
-Ant::Ant(int inOwner) : kill_count(0), owner(inOwner) {
+Ant::Ant(int inOwner, Location startingLocation) : kill_count(0), owner(inOwner), location(startingLocation) {
 //	locator = AntLocatorPtr(new Locator<Ant>(this));
 	// locator is set later
 }
@@ -32,8 +32,8 @@ bool Ant::isMine() const {
 	return (owner == Ant::OWNER_ME);
 }
 
-boost::shared_ptr<Ant> Ant::makeAnt(int inOwner) {
-	boost::shared_ptr<Ant> newAnt (new Ant(inOwner));
+boost::shared_ptr<Ant> Ant::makeAnt(int inOwner, Location startingLocation) {
+	boost::shared_ptr<Ant> newAnt (new Ant(inOwner, startingLocation));
 
 }
 
@@ -49,9 +49,7 @@ Location Ant::getLocation() const {
 	return location;
 }
 
-//Locator<Ant>& Ant::getLocator() const {
-//	return *locator;
-//}
+
 
 
 

@@ -2,6 +2,7 @@
 #define INFESTOR_BOT_H_
 
 #include "State.h"
+#include "AntManager.h"
 
 /*
  This struct represents your bot in the game of Ants

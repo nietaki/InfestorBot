@@ -17,15 +17,16 @@ class Ant{
 		const static int OWNER_ME = 0;
 		int owner;
 		int kill_count;
+		int last_move_no;
 		Location location;
 
 //		Ant();
-		Ant(int inOwner);
+		Ant(int inOwner, Location startingLocation);
 
 		//TODO Strategy strat;
 
 	public:
-		static boost::shared_ptr<Ant> makeAnt(int inOwner);
+		static boost::shared_ptr<Ant> makeAnt(int inOwner, Location startingLocation);
 		virtual ~Ant();
 
 		bool isMine() const;
