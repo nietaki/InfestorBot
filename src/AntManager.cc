@@ -6,7 +6,7 @@
  */
 
 #include "AntManager.h"
-#include "Helper.h"
+
 
 
 AntManager* AntManager::_instance = NULL;
@@ -66,9 +66,10 @@ void AntManager::makeMove(Location fromLocation, int direction) {
 	Square toSquare = state->getSquare(toLocation);
 	AntPtr movingAnt = fromSquare.antPtr;
 	//change Ant's location
+	state->bug << movingAnt << std::endl;
+//	state->bug << fromLocation << std::endl;
 	movingAnt->setLocation(toLocation);
 
-	return;
 	//move ant on the Grid
 	fromSquare.antPtr.reset();
 	toSquare.antPtr = movingAnt;

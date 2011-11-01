@@ -1,5 +1,7 @@
 #ifndef LOCATION_H_
 #define LOCATION_H_
+#include <iostream>
+#include <stdio.h>
 /*
  constants
  */
@@ -14,17 +16,14 @@ const int DIRECTIONS[4][2] = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } }; //{N,
 struct Location {
 		int row, col;
 
-		Location() {
-			row = col = 0;
-		};
+		Location();
 
-		Location(int r, int c) {
-			row = r;
-			col = c;
-		};
+		Location(int r, int c);
 
-		Location getBordering(int dir){
-			return Location(row + DIRECTIONS[dir][0], col + DIRECTIONS[dir][1]);
-		}
+		Location getBordering(int dir);
+
+
 };
+
+
 #endif //LOCATION_H_

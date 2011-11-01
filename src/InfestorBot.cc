@@ -34,22 +34,26 @@ void InfestorBot::playGame() {
 //makes the bots moves for the turn
 void InfestorBot::makeMoves() {
 	state->bug << "turn " << state->turn << ":" << endl;
-	state->bug << *state << endl;
-	return;
+//	state->bug << *state << endl;
+//	return;//FIXME
 
 
 	AntSet *ants = antManager->getAnts();
 	AntSet::iterator it;
 	for(it=ants->begin(); it != ants->end(); it++){
 		AntPtr curAnt = *it;
-//		curAnt.
-		for (int d = 0; d < TDIRECTIONS ; d++) {
-			Location loc = state->getLocation(curAnt->getLocation(), d);
+		if(curAnt){
+			state->bug << "the ant should be ok" << endl;
+			for (int d = 0; d < TDIRECTIONS ; d++) {
+				Location loc = state->getLocation(curAnt->getLocation(), d);
 
-			if (!state->grid[loc.row][loc.col].isWater) {
-				antManager->makeMove(curAnt->getLocation(), d);
-				break;
+				if (!state->grid[loc.row][loc.col].isWater) {
+					antManager->makeMove(curAnt->getLocation(), d);
+					break;
+				}
 			}
+		}else{
+			state->bug << "iterating over dead Ant" << endl;
 		}
 	}
 	//FIXME no moves picked for now

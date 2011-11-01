@@ -8,10 +8,12 @@
 #ifndef ANTMANAGER_H_
 #define ANTMANAGER_H_
 
+#include <iostream>
 #include <boost/shared_ptr.hpp>
 #include <set>
 #include <vector>
 
+#include "Helper.h"
 #include "Ant.h"
 #include "Square.h"
 
