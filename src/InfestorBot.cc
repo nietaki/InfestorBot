@@ -22,6 +22,7 @@ void InfestorBot::playGame() {
 	//continues making moves while the game is not over
 	while (cin >> *state) {
 		state->updateVisionInformation();
+		AntManager::instance()->nextTurn(state->turn);
 		makeMoves();
 		endTurn();
 	}
@@ -55,6 +56,7 @@ void InfestorBot::endTurn() {
 	if (state->turn > 0)
 		state->reset();
 	state->turn++;
+
 
 	cout << "go" << endl;
 }

@@ -22,7 +22,7 @@ class AntManager {
 
 	private:
 		AntManager();
-		AntSet movedAnts, waitingAnts;
+		AntSet ants;
 		Grid* gridPtr;
 
 		static AntManager* _instance;
@@ -40,11 +40,14 @@ class AntManager {
 		void remove(AntPtr inAnt);
 		void remove(Location inLocation);
 
+		void makeMove(Location fromLocation, int direction);
 		Grid* getGrid();
-		AntSet* getMovedAnts();
-		AntSet* getWaitingAnts();
+		AntSet* getAnts();
 
-		void nextMove(int moveNo);
+		/**
+		 * is invoked at the beginning of every turn, after the situation has been parsed, before making any move
+		 */
+		void nextTurn(int moveNo);
 
 		//TODO and Buckets and the accessors
 

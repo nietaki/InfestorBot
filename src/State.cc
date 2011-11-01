@@ -91,8 +91,8 @@ void State::updateVisionInformation() {
 
 	//TODO check if I reworked this right
 //	for (int a = 0; a < (int) myAnts.size(); a++) {
-	AntSet* myAnts = AntManager::instance()->getWaitingAnts();
-	//->getWaitingAnts();
+	AntSet* myAnts = AntManager::instance()->getAnts();
+	//->getAnts();
 	AntSet::const_iterator it;
 	for(it = myAnts->begin(); it != myAnts->end(); it++){
 		sLoc = (*it)->getLocation();

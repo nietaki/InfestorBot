@@ -22,19 +22,16 @@ AntManager *AntManager::instance() {
 	return AntManager::_instance;
 }
 
-AntSet *AntManager::getMovedAnts() {
-	return &movedAnts;
-}
 
-AntSet *AntManager::getWaitingAnts() {
-	return &waitingAnts;
+AntSet *AntManager::getAnts() {
+	return &ants;
 }
 
 void AntManager::add(AntPtr inAnt) {
-	waitingAnts.insert(inAnt);
+	ants.insert(inAnt);
 	Square antSquare = Helper::getSquare(gridPtr, inAnt->getLocation());
 	antSquare.antPtr = inAnt;
-	waitingAnts.insert(inAnt);
+	ants.insert(inAnt);
 }
 
 void AntManager::setGrid(Grid *inGrid) {
@@ -50,8 +47,7 @@ void AntManager::remove(Location inLocation){
 }
 
 void AntManager::remove(AntPtr inAnt) {
-	waitingAnts.erase(inAnt);
-	movedAnts.erase(inAnt); //FIXME this shouldn't be neccessary
+	ants.erase(inAnt);
 
 	Square antSquare = Helper::getSquare(gridPtr, inAnt->getLocation());
 	antSquare.antPtr.reset();
@@ -61,11 +57,7 @@ Grid *AntManager::getGrid() {
 	return gridPtr;
 }
 
-void AntManager::nextMove(int moveNo) {
-	waitingAnts.swap(movedAnts); //we probably moved most of the ants, let's make this efficient
-	waitingAnts.insert(movedAnts.begin(), movedAnts.end());
-	//all the ants should be waiting now;
-	//TODO update the moveNo in the ants
+void AntManager::nextTurn(int moveNo) {
 }
 
 AntManager::~AntManager() {
