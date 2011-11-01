@@ -2,7 +2,8 @@
 #define SQUARE_H_
 
 #include <vector>
-
+#include "Ant.h"
+#include <boost/shared_ptr.hpp>
 /*
  struct for representing a square in the grid.
  */
@@ -10,6 +11,7 @@ struct Square {
 		bool isVisible, isWater, isHill, isFood;
 		int ant, hillPlayer;
 		std::vector<int> deadAnts;
+		AntPtr antPtr;
 
 		Square() {
 			isVisible = isWater = isHill = isFood = 0;

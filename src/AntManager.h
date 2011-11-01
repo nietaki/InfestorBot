@@ -36,12 +36,12 @@ class AntManager {
 		//setup is always a pain ;)
 		void setGrid(Grid *inGrid);
 
-		void add(boost::shared_ptr<Ant> inAnt);
-		void remove(boost::shared_ptr<Ant> inAnt);
+		void add(AntPtr inAnt);
+		void remove(AntPtr inAnt);
 
-		Grid& getGrid();
-		AntSet& getMovedAnts();
-		AntSet& getWaitingAnts();
+		Grid* getGrid();
+		AntSet* getMovedAnts();
+		AntSet* getWaitingAnts();
 
 		void nextMove();
 

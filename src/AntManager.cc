@@ -7,7 +7,7 @@
 
 #include "AntManager.h"
 
-AntManager* AntManager::_instance;
+AntManager* AntManager::_instance = NULL;
 
 AntManager::AntManager() {
 
@@ -20,15 +20,17 @@ AntManager *AntManager::instance() {
 	return AntManager::_instance;
 }
 
-AntSet & AntManager::getMovedAnts() {
-	return movedAnts;
+AntSet *AntManager::getMovedAnts() {
+	return &movedAnts;
 }
 
-AntSet & AntManager::getWaitingAnts() {
-	return waitingAnts;
+AntSet *AntManager::getWaitingAnts() {
+	return &waitingAnts;
 }
 
-void AntManager::add(boost::shared_ptr<Ant> inAnt) {
+void AntManager::add(AntPtr inAnt) {
+	waitingAnts.insert(inAnt);
+	//TODO (*gridPtr)[0][0].antPtr = inAnt;
 
 	//TODO adding to waitingAnts
 }
@@ -38,12 +40,12 @@ void AntManager::setGrid(Grid *inGrid) {
 }
 
 
-void AntManager::remove(boost::shared_ptr<Ant> inAnt) {
+void AntManager::remove(AntPtr inAnt) {
 	//TODO removing an ant;
 }
 
-Grid & AntManager::getGrid() {
-	return *gridPtr;
+Grid *AntManager::getGrid() {
+	return gridPtr;
 }
 
 void AntManager::nextMove() {

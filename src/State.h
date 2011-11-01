@@ -59,8 +59,8 @@ struct State {
 		 */
 	private:
 		State();
-		State(State const&){};
-		State& operator=(State const&){};
+		//State(State const& ){ };
+		//State& operator=(State const& ){ };
 
 
 	public:

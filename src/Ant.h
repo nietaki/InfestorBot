@@ -12,6 +12,9 @@
 #include "boost/shared_ptr.hpp"
 #include "Location.h"
 
+class Ant;
+typedef boost::shared_ptr<Ant> AntPtr;
+
 class Ant{
 	private:
 		const static int OWNER_ME = 0;
