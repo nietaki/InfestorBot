@@ -260,3 +260,8 @@ istream& operator>>(istream &is, State &state) {
 	return is;
 }
 ;
+
+/* my helpers */
+Square &State::getSquare(const Location& inLocation) {
+	return grid[inLocation.row][inLocation.col];
+}

@@ -16,7 +16,7 @@ class Helper {
 		Helper();
 	public:
 		virtual ~Helper();
-		static Square& getSquare(Grid* inGrid, const Location& inLocation);
+//		static Square& getSquare(Grid* inGrid, const Location& inLocation);
 		static int getTurnNo();
 };
 
