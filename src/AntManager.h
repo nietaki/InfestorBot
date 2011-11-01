@@ -15,7 +15,7 @@
 #include "Ant.h"
 #include "Square.h"
 
-typedef std::vector<std::vector<Square> > Grid;
+
 typedef std::set<boost::shared_ptr<Ant> > AntSet;
 
 class AntManager {

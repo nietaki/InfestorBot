@@ -4,6 +4,11 @@
 #include <vector>
 #include "Ant.h"
 #include <boost/shared_ptr.hpp>
+#include <vector>
+
+class Square;
+typedef std::vector<std::vector<Square> > Grid;
+
 /*
  struct for representing a square in the grid.
  */
