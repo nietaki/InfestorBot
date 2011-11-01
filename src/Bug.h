@@ -4,7 +4,7 @@
 #include <fstream>
 
 #ifndef DEBUG
-//#define DEBUG
+#define DEBUG
 #endif
 
 /*
@@ -12,11 +12,11 @@
  except the debug messages are stripped while compiling if
  DEBUG is not defined.
  example:
- Bug bug;
- bug.open("./debug.txt");
- bug << state << endl;
- bug << "testing" << 2.0 << '%' << endl;
- bug.close();
+	 Bug bug;
+	 bug.open("./debug.txt");
+	 bug << state << endl;
+	 bug << "testing" << 2.0 << '%' << endl;
+	 bug.close();
  */
 struct Bug {
 		std::ofstream file;

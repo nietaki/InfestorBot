@@ -42,8 +42,9 @@ void State::reset() {
 	food.clear();
 	for (int row = 0; row < rows; row++)
 		for (int col = 0; col < cols; col++)
-			if (!grid[row][col].isWater)
+			if (!grid[row][col].isWater){
 				grid[row][col].reset();
+			}
 }
 ;
 
@@ -52,6 +53,7 @@ void State::makeMove(const Location &loc, int direction) {
 	cout << "o " << loc.row << " " << loc.col << " " << CDIRECTIONS[direction]
 			<< endl;
 
+	//FIXME this doesn't output the info to the engine, this also updates the model
 	Location nLoc = getLocation(loc, direction);
 	grid[nLoc.row][nLoc.col].ant = grid[loc.row][loc.col].ant;
 	grid[loc.row][loc.col].ant = -1;
@@ -176,14 +178,14 @@ istream& operator>>(istream &is, State &state) {
 			else if (inputType == "player_seed")
 				is >> state.seed;
 			else if (inputType == "viewradius2") {
-				is >> state.viewradius;
-				state.viewradius = sqrt(state.viewradius);
+				is >> state.viewradius2;
+				state.viewradius = sqrt(state.viewradius2);
 			} else if (inputType == "attackradius2") {
-				is >> state.attackradius;
-				state.attackradius = sqrt(state.attackradius);
+				is >> state.attackradius2;
+				state.attackradius = sqrt(state.attackradius2);
 			} else if (inputType == "spawnradius2") {
-				is >> state.spawnradius;
-				state.spawnradius = sqrt(state.spawnradius);
+				is >> state.spawnradius2;
+				state.spawnradius = sqrt(state.spawnradius2);
 			} else if (inputType == "ready") //end of parameter input
 			{
 				state.timer.start();
@@ -209,6 +211,7 @@ istream& operator>>(istream &is, State &state) {
 				is >> row >> col >> player;
 				state.grid[row][col].ant = player;
 				if (player == 0)
+
 					state.myAnts.push_back(Location(row, col));
 				else
 					state.enemyAnts.push_back(Location(row, col));

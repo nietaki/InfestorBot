@@ -37,6 +37,7 @@ struct State {
 		 */
 		static State* _instance;
 		int rows, cols, turn, turns, noPlayers;
+		double attackradius2, spawnradius2, viewradius2;
 		double attackradius, spawnradius, viewradius;
 		double loadtime, turntime;
 		std::vector<double> scores;

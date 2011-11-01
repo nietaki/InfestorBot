@@ -7,6 +7,7 @@ ODIR=obj#object directory
 EXEDIR=bin
 ## LEGACY CLASS LISTING
 #SOURCES=InfestorBot.cc MyBot.cc State.cc Bucketable.cc BucketableLocationListener.cc NotImplementedException.cc
+LONE_HEADERS=Bug.h State.h Square.h Timer.h
 SOURCES1=$(wildcard src/*.cc)
 SOURCES=$(subst src/,,$(SOURCES1))
 #SOURCES=*.cc #TODO
@@ -30,6 +31,7 @@ FULLZIPNAME=$(ZIPNAME).zip
 #CFLAGS+=-g -DDEBUG
 
 all: $(OBJECTS) $(EXECUTABLE)
+	-rm -f ${EXEDIR}/debug.txt
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(EXEDIR)/$@ 
@@ -37,7 +39,7 @@ $(EXECUTABLE): $(OBJECTS)
 
 
 #.cc.o: *.h 
-%.o: src/%.cc %.h
+%.o: src/%.cc %.h $(LONE_HEADERS)
 	$(CC) $(CFLAGS) $< -o $(ODIR)/$@
 
 #echo $^;
@@ -60,7 +62,7 @@ $(FULLZIPNAME):
 clean: 
 	#-rm -f ${EXECUTABLE} ${OBJECTS} *.d
 	-rm -f ${EXEDIR}/*.run $(EXEDIR)/*.zip ${ODIR}/*.o $(ODIR)/*.d *.o
-	-rm -f debug.txt
+	-rm -f ${EXEDIR}/debug.txt
 
 .PHONY: all clean zip
 
