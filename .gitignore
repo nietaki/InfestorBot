@@ -6,3 +6,4 @@ obj/*.d
 *.pyc
 **/*.pyc
 tools/game_logs/*
+*~

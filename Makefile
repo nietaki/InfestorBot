@@ -12,6 +12,8 @@ SOURCES1=$(wildcard src/*.cc)
 SOURCES=$(subst src/,,$(SOURCES1))
 #SOURCES=*.cc #TODO
 
+include google_test/Makefile 
+
 OBJECTS=$(SOURCES:.cc=.o)
 
 vpath %.cc src
@@ -60,7 +62,6 @@ $(FULLZIPNAME):
 	zip -j $(EXEDIR)/$(FULLZIPNAME) $(SRCDIR)/*
 
 clean: 
-	#-rm -f ${EXECUTABLE} ${OBJECTS} *.d
 	-rm -f ${EXEDIR}/*.run $(EXEDIR)/*.zip ${ODIR}/*.o $(ODIR)/*.d *.o
 	-rm -f ${EXEDIR}/debug.txt
 
