@@ -1,4 +1,5 @@
 CC=g++
+#CXX=$(CC)
 CFLAGS=-O3 -funroll-loops -Wall -c -Woverloaded-virtual
 LDFLAGS=-O2 -lm
 
@@ -8,11 +9,16 @@ EXEDIR=bin
 ## LEGACY CLASS LISTING
 #SOURCES=InfestorBot.cc MyBot.cc State.cc Bucketable.cc BucketableLocationListener.cc NotImplementedException.cc
 LONE_HEADERS=Bug.h State.h Square.h Timer.h
-SOURCES1=$(wildcard src/*.cc)
-SOURCES=$(subst src/,,$(SOURCES1))
-#SOURCES=*.cc #TODO
+#SOURCES1=$(wildcard src/*.cc)
+#SOURCES=$(subst src/,,$(SOURCES1))
+SOURCES=$(notdir $(wildcard src/*.cc))
 
-#include google_test/Makefile 
+TEST_DIR=$(SRCDIR)/tests
+
+#no path and no extension
+PROJECT_TESTS=$(basename $(notdir $(wildcard $(TEST_DIR)/*.cc)))
+PROJECT_TESTS_RUN=$(addsuffix .run,$(PROJECT_TESTS))
+#SOURCES=*.cc #TODO
 
 OBJECTS=$(SOURCES:.cc=.o)
 
@@ -59,11 +65,6 @@ TESTS = sample1_unittest
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
-# House-keeping build targets.
-
-all : $(TESTS)
-
-# Builds gtest.a and gtest_main.a.
 
 # Usually you shouldn't tweak such internal variables, indicated by a
 # trailing _.
@@ -75,6 +76,7 @@ GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 #CFLAGS+=-g -DDEBUG
 
 $(EXECUTABLE): $(OBJECTS)
+	echo $(PROJECT_TESTS)
 	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(EXEDIR)/$@ 
 
 
@@ -82,10 +84,6 @@ $(EXECUTABLE): $(OBJECTS)
 #.cc.o: *.h 
 %.o: src/%.cc %.h $(LONE_HEADERS)
 	$(CC) $(CFLAGS) $< -o $(ODIR)/$@
-
-#echo $^;
-#echo $*;
-
 
 ### Very special rules for my very special MyBot - override the implicit, which doesn't work for MyBot ###
 #make some kind of rule for Mybot.cc
@@ -101,11 +99,7 @@ $(FULLZIPNAME):
 	zip -j $(EXEDIR)/$(FULLZIPNAME) $(SRCDIR)/*
 
 
-
-
 .PHONY: all clean zip
-
-
 
 
 ### GOOGLE TEST RECIPES ###
@@ -114,6 +108,7 @@ $(FULLZIPNAME):
 # implementation details, the dependencies specified below are
 # conservative and not optimized.  This is fine as Google Test
 # compiles fast and for ordinary users its source rarely changes.
+
 
 gtest-all.o : $(GTEST_SRCS_)
 	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \
@@ -128,21 +123,33 @@ gtest.a : gtest-all.o
 
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $(ODIR)/$@ $(addprefix $(ODIR)/,$^)
+	
+
 
 # Builds a sample test.  A test should link with either gtest.a or
 # gtest_main.a, depending on whether it defines its own main()
 # function.
 
+## SAMPLE TEST RECIPES, LET'S LEAVE THEM FOR REFERENCE ##
+
+#1. COMPILE THE TESTED CODE
 sample1.o : $(USER_DIR)/sample1.cc $(USER_DIR)/sample1.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/sample1.cc -o $(ODIR)/$@
 
+#2. COMPILE THE TEST
 sample1_unittest.o : $(USER_DIR)/sample1_unittest.cc \
                      $(USER_DIR)/sample1.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/sample1_unittest.cc -o $(ODIR)/$@
 
+#3. LINK THE gtest_main.a WITH THE COMPILED TEST AND TESTED CODE
 sample1_unittest : sample1.o sample1_unittest.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(addprefix $(ODIR)/,$^) -o $(EXEDIR)/$@ 
 
+	
+### UNIVERSAL PROJECT TEST RECIPES ###
+#$(addsufix .run,PROJECT_TESTS):
+#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/sample1_unittest.cc -o $(ODIR)/$@
+	
 
 ####  GLOBAL CLEAN TARGET ###
 
@@ -154,6 +161,6 @@ clean:
 
 	
 
-all: $(OBJECTS) $(EXECUTABLE) $(TESTS)
+all: $(OBJECTS) $(EXECUTABLE) $(TESTS) $(PROJECT_TESTS_RUN)
 	-rm -f ${EXEDIR}/debug.txt
 	
