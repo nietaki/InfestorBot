@@ -7,3 +7,5 @@ obj/*.d
 **/*.pyc
 tools/game_logs/*
 *~
+*.o
+*.a
