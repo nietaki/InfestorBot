@@ -75,8 +75,11 @@ GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 #Uncomment the following to enable debugging
 #CFLAGS+=-g -DDEBUG
 
+#all: $(TESTS) $(PROJECT_TESTS_RUN)
+all: $(OBJECTS) $(EXECUTABLE)  $(PROJECT_TESTS_RUN)
+	-rm -f ${EXEDIR}/debug.txt
+
 $(EXECUTABLE): $(OBJECTS)
-	echo $(PROJECT_TESTS)
 	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(EXEDIR)/$@ 
 
 
@@ -133,23 +136,30 @@ gtest_main.a : gtest-all.o gtest_main.o
 ## SAMPLE TEST RECIPES, LET'S LEAVE THEM FOR REFERENCE ##
 
 #1. COMPILE THE TESTED CODE
-sample1.o : $(USER_DIR)/sample1.cc $(USER_DIR)/sample1.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/sample1.cc -o $(ODIR)/$@
-
+#sample1.o : $(USER_DIR)/sample1.cc $(USER_DIR)/sample1.h $(GTEST_HEADERS)
+#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/sample1.cc -o $(ODIR)/$@
+#
 #2. COMPILE THE TEST
-sample1_unittest.o : $(USER_DIR)/sample1_unittest.cc \
-                     $(USER_DIR)/sample1.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/sample1_unittest.cc -o $(ODIR)/$@
-
-#3. LINK THE gtest_main.a WITH THE COMPILED TEST AND TESTED CODE
-sample1_unittest : sample1.o sample1_unittest.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(addprefix $(ODIR)/,$^) -o $(EXEDIR)/$@ 
-
-	
-### UNIVERSAL PROJECT TEST RECIPES ###
-#$(addsufix .run,PROJECT_TESTS):
+#sample1_unittest.o : $(USER_DIR)/sample1_unittest.cc \
+#                     $(USER_DIR)/sample1.h $(GTEST_HEADERS)
 #	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/sample1_unittest.cc -o $(ODIR)/$@
+#
+##3. LINK THE gtest_main.a WITH THE COMPILED TEST AND TESTED CODE
+##	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(addprefix $(ODIR)/,$^) -o $(EXEDIR)/$@ 
+#sample1_unittest : sample1.o sample1_unittest.o gtest_main.a
+#	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $(addprefix $(ODIR)/,$^) -o $(EXEDIR)/$@ 
+
 	
+### UNIVERSAL PROJECT TEST RECIPES ### $(OBJECTS) 
+
+#step 1 already done, doing 2:
+$(addsuffix .o,$(PROJECT_TESTS)): %.o: $(TEST_DIR)/%.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I$(SRCDIR) -c $< -o $(ODIR)/$@
+
+#3.
+$(PROJECT_TESTS_RUN): %.run: %.o
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ $(addprefix $(ODIR)/,$(OBJECTS)) -o $(EXEDIR)/$@
+
 
 ####  GLOBAL CLEAN TARGET ###
 
@@ -161,6 +171,5 @@ clean:
 
 	
 
-all: $(OBJECTS) $(EXECUTABLE) $(TESTS) $(PROJECT_TESTS_RUN)
-	-rm -f ${EXEDIR}/debug.txt
+
 	
