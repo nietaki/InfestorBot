@@ -75,10 +75,9 @@ GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 #Uncomment the following to enable debugging
 #CFLAGS+=-g -DDEBUG
 
-$(EXECUTABLE): $(OBJECTS)
-	echo $(PROJECT_TESTS)
-	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(EXEDIR)/$@ 
 
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS_WITH_LOCATION) -o $(EXEDIR)/$@ 
 
 
 #.cc.o: *.h 
@@ -109,6 +108,7 @@ $(FULLZIPNAME):
 # conservative and not optimized.  This is fine as Google Test
 # compiles fast and for ordinary users its source rarely changes.
 
+all: $(TESTS)
 
 gtest-all.o : $(GTEST_SRCS_)
 	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \
@@ -157,10 +157,11 @@ sample1_unittest : sample1.o sample1_unittest.o gtest_main.a
 clean: 
 	rm -f ${EXEDIR}/*.run $(EXEDIR)/*.zip ${ODIR}/*.o $(ODIR)/*.d *.o
 	rm -f ${EXEDIR}/debug.txt
-	rm -f $(TESTS) gtest.a gtest_main.a *.o
+	rm -f google_test/$(TESTS) gtest.a gtest_main.a *.o
 
 	
+#$(PROJECT_TESTS_RUN)
 
-all: $(OBJECTS) $(EXECUTABLE) $(TESTS) $(PROJECT_TESTS_RUN)
+all: $(OBJECTS) $(EXECUTABLE)  
 	-rm -f ${EXEDIR}/debug.txt
 	
