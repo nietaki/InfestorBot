@@ -10,57 +10,70 @@
 #include <queue>
 #include <stack>
 #include <stdint.h>
+#include <set>
+#include <cstdlib>
 
+//#include "Ant.h"
 #include "Timer.h"
 #include "Bug.h"
 #include "Square.h"
 #include "Location.h"
+#include "AntManager.h"
+
+
 
 /*
-    constants
-*/
-const int TDIRECTIONS = 4;
-const char CDIRECTIONS[4] = {'N', 'E', 'S', 'W'};
-const int DIRECTIONS[4][2] = { {-1, 0}, {0, 1}, {1, 0}, {0, -1} };      //{N, E, S, W}
+ struct to store current state information
+ */
+struct State {
+	public:
+		/*
+		 Variables
+		 */
+		static State* _instance;
+		int rows, cols, turn, turns, noPlayers;
+		double attackradius2, spawnradius2, viewradius2;
+		double attackradius, spawnradius, viewradius;
+		double loadtime, turntime;
+		std::vector<double> scores;
 
-/*
-    struct to store current state information
-*/
-struct State
-{
-    /*
-        Variables
-    */
-    int rows, cols,
-        turn, turns,
-        noPlayers;
-    double attackradius, spawnradius, viewradius;
-    double loadtime, turntime;
-    std::vector<double> scores;
-    bool gameover;
-    int64_t seed;
+		//my variables
+//		BucketableSet myAnts, foeAnts;
 
-    std::vector<std::vector<Square> > grid;
-    std::vector<Location> myAnts, enemyAnts, myHills, enemyHills, food;
 
-    Timer timer;
-    Bug bug;
+		bool gameover;
+		int64_t seed;
 
-    /*
-        Functions
-    */
-    State();
-    ~State();
+		Grid grid;
+		std::vector<Location> /*myAnts,*/ enemyAnts, myHills, enemyHills, food;
 
-    void setup();
-    void reset();
 
-    void makeMove(const Location &loc, int direction);
+		Timer timer;
+		Bug bug;
 
-    double distance(const Location &loc1, const Location &loc2);
-    Location getLocation(const Location &startLoc, int direction);
+		/*
+		 Functions
+		 */
+	private:
+		State();
+		//State(State const& ){ };
+		//State& operator=(State const& ){ };
 
-    void updateVisionInformation();
+
+	public:
+
+		static State* instance();
+		~State();
+
+		void setup();
+		void reset();
+
+		void makeMove(const Location &loc, int direction);
+		Square &getSquare(const Location& inLocation);
+		double distance(const Location &loc1, const Location &loc2);
+		Location getLocation(const Location &startLoc, int direction);
+
+		void updateVisionInformation();
 };
 
 std::ostream& operator<<(std::ostream &os, const State &state);

@@ -1,5 +1,8 @@
 bin/*.run
 bin/*.zip
+bin/*.txt
 obj/*.o
 obj/*.d
+*.pyc
+**/*.pyc
 tools/game_logs/*
