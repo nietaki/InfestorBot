@@ -1,6 +1,7 @@
 bin/*.run
 bin/*.zip
 bin/*.txt
+bin/*
 obj/*.o
 obj/*.d
 *.pyc
