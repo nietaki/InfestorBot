@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (InfestorBot)
 
-# SUBDIRS(engine)
+#subdirs(google_test)
 # INCLUDE_DIRECTORIES(${InfestorBot_SOURCE_DIR}/engine)
 
 
