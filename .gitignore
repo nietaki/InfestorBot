@@ -2,6 +2,7 @@ bin/*.run
 bin/*.zip
 bin/*.txt
 bin/*
+build/*
 obj/*.o
 obj/*.d
 *.pyc
