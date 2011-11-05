@@ -12,10 +12,10 @@
 
 class Bugger {
 	private:
-		static Bug* getBug();
 		static Bug* _bug;
 		Bugger();
 	public:
+		static Bug* getBug();
 		virtual ~Bugger();
 };
 

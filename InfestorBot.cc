@@ -5,10 +5,8 @@ using namespace std;
 //constructor
 InfestorBot::InfestorBot() {
 	state = State::instance();
-
-
-}
-;
+	bug = Bugger::getBug();
+};
 
 //plays a single game of Ants.
 void InfestorBot::playGame() {
@@ -33,7 +31,7 @@ void InfestorBot::playGame() {
 
 //makes the bots moves for the turn
 void InfestorBot::makeMoves() {
-	state->bug << "turn " << state->turn << ":" << endl;
+	(*bug) << "turn " << state->turn << ":" << endl;
 //	state->bug << *state << endl;
 //	return;//FIXME
 
@@ -43,7 +41,7 @@ void InfestorBot::makeMoves() {
 	for(it=ants->begin(); it != ants->end(); it++){
 		AntPtr curAnt = *it;
 		if(curAnt){
-			state->bug << "the ant should be ok" << endl;
+			(*bug) << "the ant should be ok" << endl;
 			for (int d = 0; d < TDIRECTIONS ; d++) {
 				Location loc = state->getLocation(curAnt->getLocation(), d);
 
@@ -53,7 +51,7 @@ void InfestorBot::makeMoves() {
 				}
 			}
 		}else{
-			state->bug << "iterating over dead Ant" << endl;
+			(*bug) << "iterating over dead Ant" << endl;
 		}
 	}
 	//FIXME no moves picked for now
@@ -70,7 +68,7 @@ void InfestorBot::makeMoves() {
 //	}
 
 
-	state->bug << "time taken: " << state->timer.getTime() << "ms" << endl << endl;
+	(*bug) << "time taken: " << state->timer.getTime() << "ms" << endl << endl;
 }
 ;
 
@@ -82,5 +80,4 @@ void InfestorBot::endTurn() {
 
 
 	cout << "go" << endl;
-}
-;
+};

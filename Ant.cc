@@ -17,7 +17,7 @@ Ant::Ant(int inOwner, Location startingLocation) : owner(inOwner), kill_count(0)
 }
 
 Ant::~Ant() {
-	State::instance()->bug << "an Ant destroyed";
+	(* Bugger::getBug()) << "an Ant destroyed";
 }
 
 int Ant::getOwner() const {

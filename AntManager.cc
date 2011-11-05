@@ -10,7 +10,7 @@
 AntManager* AntManager::_instance = NULL;
 
 AntManager::AntManager() {
-
+	bug = Bugger::getBug();
 }
 
 AntManager *AntManager::instance() {
@@ -30,8 +30,8 @@ void AntManager::add(AntPtr inAnt) {
 	antSquare.antPtr = inAnt;
 	ants.insert(inAnt);
 
-	State::instance()->bug << "Ant " << inAnt << " added to " << inAnt->getLocation() << std::endl;
-	State::instance()->bug << "and the square was " << &antSquare << std::endl;
+	(*bug) << "Ant " << inAnt << " added to " << inAnt->getLocation() << std::endl;
+	(*bug) << "and the square was " << &antSquare << std::endl;
 
 }
 
@@ -46,7 +46,7 @@ void AntManager::remove(Location inLocation){
 		//calls the other remove, everything is handled there
 		remove(antSquare.antPtr);
 	}else{
-		State::instance()->bug << "AntManager::remove(Location) wanted to remove a non-existent Ant \n";
+		(*bug) << "AntManager::remove(Location) wanted to remove a non-existent Ant \n";
 	}
 
 }
@@ -72,10 +72,10 @@ void AntManager::makeMove(Location fromLocation, int direction) {
 	AntPtr movingAnt = fromSquare.antPtr;
 	//change Ant's location
 
-	state->bug << "MakeMove:" << std::endl;
-	state->bug << movingAnt << std::endl;
-	state->bug << fromLocation << std::endl;
-	state->bug << "and the square is " << &fromSquare << std::endl;
+	(*bug) << "MakeMove:" << std::endl;
+	(*bug) << movingAnt << std::endl;
+	(*bug) << fromLocation << std::endl;
+	(*bug) << "and the square is " << &fromSquare << std::endl;
 
 	movingAnt->setLocation(toLocation);
 

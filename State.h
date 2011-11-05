@@ -15,7 +15,7 @@
 
 //#include "Ant.h"
 #include "Timer.h"
-#include "Bug.h"
+#include "Bugger.h"
 #include "Square.h"
 #include "Location.h"
 #include "AntManager.h"
@@ -49,7 +49,7 @@ struct State {
 
 
 		Timer timer;
-		Bug bug;
+		Bug* bug;
 
 		/*
 		 Functions

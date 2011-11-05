@@ -10,13 +10,13 @@ State* State::_instance = NULL;
 State::State() {
 	gameover = 0;
 	turn = 0;
-	bug.open("./debug.txt");
+	bug = Bugger::getBug();
 }
 ;
 
 //deconstructor
 State::~State() {
-	bug.close();
+	bug->close();
 }
 ;
 

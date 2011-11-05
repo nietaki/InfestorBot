@@ -16,10 +16,7 @@
 #include "Ant.h"
 #include "Square.h"
 #include "State.h"
-
-
-
-
+#include "Bugger.h"
 
 class AntManager {
 
@@ -27,7 +24,7 @@ class AntManager {
 		AntManager();
 		AntSet ants;
 		Grid* gridPtr;
-
+		Bug* bug;
 		static AntManager* _instance;
 
 

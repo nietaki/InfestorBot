@@ -11,6 +11,7 @@
 #include <set>
 #include <boost/shared_ptr.hpp>
 
+#include "Bugger.h"
 #include "Location.h"
 //#include "State.h"
 
@@ -21,6 +22,7 @@ typedef std::set<boost::shared_ptr<Ant> > AntSet;
 
 class Ant{
 	private:
+
 		const static int OWNER_ME = 0;
 		int owner;
 		int kill_count;

@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include "State.h"
 #include "AntManager.h"
+#include "Bugger.h"
 
 /*
  This struct represents your bot in the game of Ants
@@ -11,6 +12,7 @@
 struct InfestorBot {
 		State *state;
 		AntManager *antManager;
+		Bug* bug;
 		InfestorBot();
 
 		void playGame(); //plays a single game of Ants
