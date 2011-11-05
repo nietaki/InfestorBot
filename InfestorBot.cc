@@ -14,7 +14,6 @@ void InfestorBot::playGame() {
 	cin >> *state;
 	state->setup();
 	antManager = new AntManager(state);
-	antManager->setGrid(& state->grid);
 
 	endTurn();
 

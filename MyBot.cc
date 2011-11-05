@@ -15,8 +15,19 @@ using namespace std;
  outlined on the specifications page at:
  http://www.ai-contest.com
  */
+
+#include <vector>
+#include <iostream>
+
 int main(int argc, char *argv[]) {
 	cout.sync_with_stdio(0); //this line makes your bot faster
+
+//	std::vector<int> v = std::vector<int>(10);
+//	v[0] = 1;
+//	int& tmp = v[0];
+//	tmp = 2;
+//	std::cout << v[0];
+//	return 0;
 
 	InfestorBot bot;
 	bot.playGame();
