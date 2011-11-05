@@ -13,6 +13,7 @@ AntManager::AntManager(State* inState) {
 	state = inState;
 
 	bug = Bugger::getBug();
+	antGrid = AntGrid (state->rows, std::vector<boost::shared_ptr<Ant> > (state->cols, boost::shared_ptr<Ant>()));
 }
 
 //AntManager *AntManager::instance() {
@@ -38,9 +39,6 @@ void AntManager::ensureAnt(Location inLocation) {
 
 }
 
-void AntManager::setGrid(Grid *inGrid) {
-	gridPtr = inGrid;
-}
 
 
 void AntManager::remove(Location inLocation){
@@ -62,11 +60,8 @@ void AntManager::remove(AntPtr inAnt) {
 	ants.erase(inAnt);
 }
 
-Grid *AntManager::getGrid() {
-	return gridPtr;
-}
-
 void AntManager::makeMove(Location fromLocation, int direction) {
+	//FIXME makeMove isnt current anymore
 	//let's get all the needed objects
 	State* state = state;
 	Location toLocation = state->getLocation(fromLocation, direction);

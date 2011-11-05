@@ -9,6 +9,7 @@
 class Square;
 typedef std::vector<std::vector<Square> > Grid;
 
+
 /*
  struct for representing a square in the grid.
  */
@@ -16,7 +17,7 @@ struct Square {
 		bool isVisible, isWater, isHill, isFood;
 		int ant, hillPlayer;
 		std::vector<int> deadAnts;
-		AntPtr antPtr;
+//		AntPtr antPtr;
 
 		Square() {
 			isVisible = isWater = isHill = isFood = 0;

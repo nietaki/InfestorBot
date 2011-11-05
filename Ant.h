@@ -9,6 +9,7 @@
 #define ANT_H_
 
 #include <set>
+#include <vector>
 #include <boost/shared_ptr.hpp>
 
 #include "Bugger.h"
@@ -18,7 +19,7 @@
 class Ant;
 typedef boost::shared_ptr<Ant> AntPtr;
 typedef std::set<boost::shared_ptr<Ant> > AntSet;
-
+typedef std::vector<std::vector<boost::shared_ptr<Ant> > > AntGrid;
 
 class Ant{
 	private:

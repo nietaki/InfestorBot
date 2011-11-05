@@ -13,7 +13,7 @@ void InfestorBot::playGame() {
 	//reads the game parameters and sets up
 	cin >> *state;
 	state->setup();
-	antManager = new AntManager(state);;
+	antManager = new AntManager(state);
 	antManager->setGrid(& state->grid);
 
 	endTurn();

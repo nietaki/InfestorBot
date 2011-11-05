@@ -24,9 +24,9 @@ class AntManager {
 
 	private:
 		AntSet ants;
-		Grid* gridPtr;
 		Bug* bug;
 		State* state;
+		AntGrid antGrid;
 		static AntManager* _instance;
 
 	public:
@@ -34,13 +34,12 @@ class AntManager {
 //		static AntManager *instance();
 
 		//setup is always a pain ;)
-		void setGrid(Grid *inGrid);
+
 
 		void ensureAnt(Location inLocation);
 		void remove(AntPtr inAnt);
 		void remove(Location inLocation);
 		void makeMove(Location fromLocation, int direction);
-		Grid* getGrid();
 		AntSet* getAnts();
 
 		/**
