@@ -20,12 +20,12 @@ State::~State() {
 }
 ;
 
-State* State::instance() {
-	if (!State::_instance) {
-		State::_instance = new State;
-	}
-	return _instance;
-}
+//State* State::instance() {
+//	if (!State::_instance) {
+//		State::_instance = new State;
+//	}
+//	return _instance;
+//}
 
 //sets the state up
 void State::setup() {
@@ -37,6 +37,7 @@ void State::setup() {
 void State::reset() {
 	//should we do anything with our ants?
 	enemyAnts.clear();
+	myAnts.clear();
 	myHills.clear();
 	enemyHills.clear();
 	food.clear();
@@ -75,50 +76,7 @@ Location State::getLocation(const Location &loc, int direction) {
 }
 ;
 
-/*
- This function will update update the lastSeen value for any squares currently
- visible by one of your live ants.
 
- BE VERY CAREFUL IF YOU ARE GOING TO TRY AND MAKE THIS FUNCTION MORE EFFICIENT,
- THE OBVIOUS WAY OF TRYING TO IMPROVE IT BREAKS USING THE EUCLIDEAN METRIC, FOR
- A CORRECT MORE EFFICIENT IMPLEMENTATION, TAKE A LOOK AT THE GET_VISION FUNCTION
- IN ANTS.PY ON THE CONTESTS GITHUB PAGE.
- */
-void State::updateVisionInformation() {
-	std::queue<Location> locQueue;
-	Location sLoc, cLoc, nLoc;
-
-	//TODO check if I reworked this right
-//	for (int a = 0; a < (int) myAnts.size(); a++) {
-	AntSet* myAnts = AntManager::instance()->getAnts();
-	//->getAnts();
-	AntSet::const_iterator it;
-	for(it = myAnts->begin(); it != myAnts->end(); it++){
-		sLoc = (*it)->getLocation();
-//		sLoc = myAnts[a];
-		locQueue.push(sLoc);
-
-		std::vector<std::vector<bool> > visited(rows, std::vector<bool>(cols, 0));
-		grid[sLoc.row][sLoc.col].isVisible = 1;
-		visited[sLoc.row][sLoc.col] = 1;
-
-		while (!locQueue.empty()) {
-			cLoc = locQueue.front();
-			locQueue.pop();
-
-			for (int d = 0; d < TDIRECTIONS; d++) {
-				nLoc = getLocation(cLoc, d);
-
-				if (!visited[nLoc.row][nLoc.col] && distance(sLoc, nLoc) <= viewradius) {
-					grid[nLoc.row][nLoc.col].isVisible = 1;
-					locQueue.push(nLoc);
-				}
-				visited[nLoc.row][nLoc.col] = 1;
-			}
-		}
-	}
-}
-;
 
 /*
  This is the output function for a state. It will add a char map
@@ -218,11 +176,7 @@ istream& operator>>(istream &is, State &state) {
 				is >> row >> col >> player;
 				state.grid[row][col].ant = player;
 				if (player == 0){
-					//breaking stuff
-					//state.myAnts.push_back(Location(row, col));
-					//TODO sth against re-adding existing ants
-					AntPtr newAnt = Ant::makeAnt(0, Location(row, col));
-					AntManager::instance()->add(newAnt);
+					state.myAnts.push_back(Location(row, col));
 				}else
 					state.enemyAnts.push_back(Location(row, col));
 			} else if (inputType == "d") //dead ant square

@@ -39,8 +39,8 @@ boost::shared_ptr<Ant> Ant::makeAnt(int inOwner, Location startingLocation) {
 
 
 
-bool Ant::hasMoved() const {
-	return (last_turn_moved >= State::instance()->turn);
+bool Ant::hasMovedOn(int turnNo) const {
+	return (last_turn_moved >= turnNo);
 }
 
 void Ant::setLocation(Location inLocation) {

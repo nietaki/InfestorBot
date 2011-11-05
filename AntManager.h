@@ -18,28 +18,28 @@
 #include "State.h"
 #include "Bugger.h"
 
+class State;
+
 class AntManager {
 
 	private:
-		AntManager();
 		AntSet ants;
 		Grid* gridPtr;
 		Bug* bug;
+		State* state;
 		static AntManager* _instance;
 
-
-
 	public:
-
-		static AntManager *instance();
+		AntManager(State* inState);
+//		static AntManager *instance();
 
 		//setup is always a pain ;)
 		void setGrid(Grid *inGrid);
 
-		void add(AntPtr inAnt);
+		void ensureAnt(AntPtr inAnt);
 		void remove(AntPtr inAnt);
 		void remove(Location inLocation);
-
+		void updateVisionInformation();
 		void makeMove(Location fromLocation, int direction);
 		Grid* getGrid();
 		AntSet* getAnts();

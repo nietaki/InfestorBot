@@ -4,7 +4,7 @@ using namespace std;
 
 //constructor
 InfestorBot::InfestorBot() {
-	state = State::instance();
+	state = new State;
 	bug = Bugger::getBug();
 };
 
@@ -13,7 +13,7 @@ void InfestorBot::playGame() {
 	//reads the game parameters and sets up
 	cin >> *state;
 	state->setup();
-	antManager = AntManager::instance();
+	antManager = new AntManager(state);;
 	antManager->setGrid(& state->grid);
 
 	endTurn();
@@ -21,8 +21,8 @@ void InfestorBot::playGame() {
 
 	//continues making moves while the game is not over
 	while (cin >> *state) {
-		state->updateVisionInformation();
-		AntManager::instance()->nextTurn(state->turn);
+		antManager->updateVisionInformation();
+		antManager->nextTurn(state->turn);
 		makeMoves();
 		endTurn();
 	}

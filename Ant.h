@@ -39,7 +39,7 @@ class Ant{
 		virtual ~Ant();
 
 		bool isMine() const;
-		bool hasMoved() const;
+		bool hasMovedOn(int turnNo) const;
 		int getOwner() const;
 		void setOwner(int playerNo);
 

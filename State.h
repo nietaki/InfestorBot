@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include <set>
 #include <cstdlib>
+#include <list>
 
 //#include "Ant.h"
 #include "Timer.h"
@@ -45,7 +46,7 @@ struct State {
 		int64_t seed;
 
 		Grid grid;
-		std::vector<Location> /*myAnts,*/ enemyAnts, myHills, enemyHills, food;
+		std::vector<Location> myAnts, enemyAnts, myHills, enemyHills, food;
 
 
 		Timer timer;
@@ -55,14 +56,14 @@ struct State {
 		 Functions
 		 */
 	private:
-		State();
 		//State(State const& ){ };
 		//State& operator=(State const& ){ };
 
 
 	public:
 
-		static State* instance();
+//		static State* instance();
+		State();
 		~State();
 
 		void setup();
@@ -73,7 +74,7 @@ struct State {
 		double distance(const Location &loc1, const Location &loc2);
 		Location getLocation(const Location &startLoc, int direction);
 
-		void updateVisionInformation();
+//		void updateVisionInformation();
 };
 
 std::ostream& operator<<(std::ostream &os, const State &state);
