@@ -46,6 +46,13 @@ struct State {
 		int64_t seed;
 
 		Grid grid;
+
+		/**
+		 * myAnts is valid only at the beginning of each turn. After that, while making moves, the current
+		 * ants' positions are available at the AntManager. This is convenient if we don't really know
+		 * the order in which the ants' moves will be decided - we don't have to fin them in the myAnts vector
+		 * THIS DECISION IS FINAL! DON'T EVEN THINK ABOUT IT
+		 */
 		std::vector<Location> myAnts, enemyAnts, myHills, enemyHills, food;
 
 
@@ -74,7 +81,7 @@ struct State {
 		double distance(const Location &loc1, const Location &loc2);
 		Location getLocation(const Location &startLoc, int direction);
 
-//		void updateVisionInformation();
+		void updateVisionInformation();
 };
 
 std::ostream& operator<<(std::ostream &os, const State &state);

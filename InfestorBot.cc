@@ -21,7 +21,7 @@ void InfestorBot::playGame() {
 
 	//continues making moves while the game is not over
 	while (cin >> *state) {
-		antManager->updateVisionInformation();
+		state->updateVisionInformation();
 		antManager->nextTurn(state->turn);
 		makeMoves();
 		endTurn();

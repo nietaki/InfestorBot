@@ -27,13 +27,14 @@ AntSet *AntManager::getAnts() {
 	return &ants;
 }
 
-void AntManager::ensureAnt(AntPtr inAnt) {
-	Square antSquare = state->getSquare(inAnt->getLocation());
-	antSquare.antPtr = inAnt;
-	ants.insert(inAnt);
-
-	(*bug) << "Ant " << inAnt << " added to " << inAnt->getLocation() << std::endl;
-	(*bug) << "and the square was " << &antSquare << std::endl;
+void AntManager::ensureAnt(Location inLocation) {
+	//TODO: add ensureAnt once AntPtrs are where they should be
+//	Square antSquare = state->getSquare(inAnt->getLocation());
+//	antSquare.antPtr = inAnt;
+//	ants.insert(inAnt);
+//
+//	(*bug) << "Ant " << inAnt << " added to " << inAnt->getLocation() << std::endl;
+//	(*bug) << "and the square was " << &antSquare << std::endl;
 
 }
 
@@ -97,48 +98,17 @@ void AntManager::makeMove(Location fromLocation, int direction) {
 /**
  * tells the AntManager the state for next move has been parsed and he can prepare for
  * the Bot making moves
+ *
+ * in our current case, ensuring ants read in by the state
  */
 void AntManager::nextTurn(int moveNo) {
+	std::vector<Location>::iterator it;
+	for(it = state->myAnts.begin(); it != state->myAnts.end(); it++){
+		ensureAnt(*it);
+	}
+
 }
 
-/*
- This function will update update the lastSeen value for any squares currently
- visible by one of your live ants.
-
- BE VERY CAREFUL IF YOU ARE GOING TO TRY AND MAKE THIS FUNCTION MORE EFFICIENT,
- THE OBVIOUS WAY OF TRYING TO IMPROVE IT BREAKS USING THE EUCLIDEAN METRIC, FOR
- A CORRECT MORE EFFICIENT IMPLEMENTATION, TAKE A LOOK AT THE GET_VISION FUNCTION
- IN ANTS.PY ON THE CONTESTS GITHUB PAGE.
- */
-void AntManager::updateVisionInformation() {
-	std::queue<Location> locQueue;
-	Location sLoc, cLoc, nLoc;
-
-	AntSet::const_iterator it;
-	for(it = ants.begin(); it != ants.end(); it++){
-		sLoc = (*it)->getLocation();
-		locQueue.push(sLoc);
-
-		std::vector<std::vector<bool> > visited(state->rows, std::vector<bool>(state->cols, 0));
-		state->grid[sLoc.row][sLoc.col].isVisible = 1;
-		visited[sLoc.row][sLoc.col] = 1;
-
-		while (!locQueue.empty()) {
-			cLoc = locQueue.front();
-			locQueue.pop();
-
-			for (int d = 0; d < TDIRECTIONS; d++) {
-				nLoc = state->getLocation(cLoc, d);
-
-				if (!visited[nLoc.row][nLoc.col] && state->distance(sLoc, nLoc) <= state->viewradius) {
-					state->grid[nLoc.row][nLoc.col].isVisible = 1;
-					locQueue.push(nLoc);
-				}
-				visited[nLoc.row][nLoc.col] = 1;
-			}
-		}
-	}
-};
 
 AntManager::~AntManager() {
 }

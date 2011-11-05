@@ -36,10 +36,9 @@ class AntManager {
 		//setup is always a pain ;)
 		void setGrid(Grid *inGrid);
 
-		void ensureAnt(AntPtr inAnt);
+		void ensureAnt(Location inLocation);
 		void remove(AntPtr inAnt);
 		void remove(Location inLocation);
-		void updateVisionInformation();
 		void makeMove(Location fromLocation, int direction);
 		Grid* getGrid();
 		AntSet* getAnts();

@@ -76,7 +76,48 @@ Location State::getLocation(const Location &loc, int direction) {
 }
 ;
 
+/*
+This function will update update the lastSeen value for any squares currently
+visible by one of your live ants.
 
+BE VERY CAREFUL IF YOU ARE GOING TO TRY AND MAKE THIS FUNCTION MORE EFFICIENT,
+THE OBVIOUS WAY OF TRYING TO IMPROVE IT BREAKS USING THE EUCLIDEAN METRIC, FOR
+A CORRECT MORE EFFICIENT IMPLEMENTATION, TAKE A LOOK AT THE GET_VISION FUNCTION
+IN ANTS.PY ON THE CONTESTS GITHUB PAGE.
+ */
+void State::updateVisionInformation()
+{
+	std::queue<Location> locQueue;
+	Location sLoc, cLoc, nLoc;
+
+	for(int a=0; a<(int) myAnts.size(); a++)
+	{
+		sLoc = myAnts[a];
+		locQueue.push(sLoc);
+
+		std::vector<std::vector<bool> > visited(rows, std::vector<bool>(cols, 0));
+		grid[sLoc.row][sLoc.col].isVisible = 1;
+		visited[sLoc.row][sLoc.col] = 1;
+
+		while(!locQueue.empty())
+		{
+			cLoc = locQueue.front();
+			locQueue.pop();
+
+			for(int d=0; d<TDIRECTIONS; d++)
+			{
+				nLoc = getLocation(cLoc, d);
+
+				if(!visited[nLoc.row][nLoc.col] && distance(sLoc, nLoc) <= viewradius)
+				{
+					grid[nLoc.row][nLoc.col].isVisible = 1;
+					locQueue.push(nLoc);
+				}
+				visited[nLoc.row][nLoc.col] = 1;
+			}
+		}
+	}
+};
 
 /*
  This is the output function for a state. It will add a char map
