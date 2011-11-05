@@ -38,7 +38,8 @@ class AntManager {
 		/**
 		 * returns a reference to the smart pointer in the given location
 		 */
-		AntPtr& getAnt(Location inLoc);
+		AntPtr getAnt(Location inLoc);
+		AntPtr& getAntRef(Location inLoc);
 
 		void ensureAnt(Location inLoc);
 		void remove(AntPtr inAnt);

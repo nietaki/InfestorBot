@@ -44,7 +44,7 @@ void InfestorBot::makeMoves() {
 			for (int d = 0; d < TDIRECTIONS ; d++) {
 				Location loc = state->getLocation(curAnt->getLocation(), d);
 
-				if (!state->grid[loc.row][loc.col].isWater) {
+				if (!state->grid[loc.row][loc.col].isWater && (!antManager->getAntRef(loc))) {
 					antManager->makeMove(curAnt->getLocation(), d);
 					break;
 				}

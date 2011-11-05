@@ -17,26 +17,22 @@ AntManager::AntManager(State* inState) {
 }
 
 
-//AntManager *AntManager::instance() {
-//	if(! AntManager::_instance){
-//		AntManager::_instance = new AntManager();
-//	}
-//	return AntManager::_instance;
-//}
-
-
 AntSet *AntManager::getAnts() {
 	return &ants;
 }
 
-AntPtr& AntManager::getAnt(Location inLoc ) {
+AntPtr AntManager::getAnt(Location inLoc ) {
+	return antGrid[inLoc.row][inLoc.col];
+}
+
+AntPtr& AntManager::getAntRef(Location inLoc ) {
 	return antGrid[inLoc.row][inLoc.col];
 }
 
 
 void AntManager::ensureAnt(Location inLoc) {
 	//TODO: add ensureAnt once AntPtrs are where they should be
-	AntPtr& antPtr = getAnt(inLoc);
+	AntPtr& antPtr = getAntRef(inLoc);
 	if(!antPtr){
 		//if there isn't any ant there yet;
 		AntPtr newAnt = Ant::makeAnt(0, inLoc);
@@ -51,7 +47,7 @@ void AntManager::ensureAnt(Location inLoc) {
 
 
 void AntManager::remove(Location inLoc){
-	AntPtr& antPtr = getAnt(inLoc);
+	AntPtr& antPtr = getAntRef(inLoc);
 	if(antPtr){
 		ants.erase(antPtr);
 		antPtr.reset();
@@ -69,30 +65,31 @@ void AntManager::remove(AntPtr inAnt) {
 }
 
 void AntManager::makeMove(Location fromLoc, int direction) {
-//	//FIXME makeMove isnt current anymore
-//	//let's get all the needed objects
-//	State* state = state;
-//	Location toLocation = state->getLocation(fromLocation, direction);
-//	Square fromSquare = state->getSquare(fromLocation);
-//	Square toSquare = state->getSquare(toLocation);
-//	AntPtr movingAnt = fromSquare.antPtr;
-//	//change Ant's location
-//
-//	(*bug) << "MakeMove:" << std::endl;
-//	(*bug) << movingAnt << std::endl;
-//	(*bug) << fromLocation << std::endl;
-//	(*bug) << "and the square is " << &fromSquare << std::endl;
-//
-//	movingAnt->setLocation(toLocation);
-//
-//	//move ant on the Grid
-//	fromSquare.antPtr.reset();
-//	toSquare.antPtr = movingAnt;
-//
-//	//mark Ant's last move
-//	movingAnt->hasMovedOn(state->turn);
-//
-//	state->makeMove(fromLocation, direction);
+	//FIXME makeMove isnt current anymore
+	//let's get all the needed objects
+
+	//all copies of smart_pointers
+	Location toLoc = state->getLocation(fromLoc, direction);
+	AntPtr fromAntPtr = getAnt(fromLoc);
+	AntPtr toAntPtr = getAnt(toLoc);
+
+	fromAntPtr->hasMovedOn(state->turn);
+	fromAntPtr->setLocation(toLoc);
+
+	(*bug) << "MakeMove:" << std::endl;
+//	(*bug) << (*fromAntPtr) << std::endl;
+	(*bug) << "from " << fromLoc << std::endl;
+	(*bug) << "to " << toLoc << std::endl;
+
+
+	//move ant on the Grid
+
+	//set the moving ant in target location
+	getAntRef(toLoc) = fromAntPtr;
+
+	//and remove it from the current one
+	getAntRef(fromLoc).reset();
+	state->makeMove(fromLoc, direction);
 }
 
 
