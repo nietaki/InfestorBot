@@ -1,20 +1,17 @@
-#include "Location.h"
 #include "gtest/gtest.h"
+#include "State.h"
+#include "AntManager.h"
 
 // To use a test fixture, derive a class from testing::Test.
-class LocationTest : public testing::Test {
- protected:
-//  Queue<int> q0_;
-//  Queue<int> q1_;
-//  Queue<int> q2_;
-
+class AntManagerTest : public testing::Test {
+  protected:
+    State* state;
+    AntManager* manager;
   // virtual void SetUp() will be called before each test is run.  You
   // should define it if you need to initialize the varaibles.
   // Otherwise, this can be skipped.
   virtual void SetUp() {
-//    q1_.Enqueue(1);
-//    q2_.Enqueue(2);
-//    q2_.Enqueue(3);
+    state = State::getSampleState(25, 100);
   }
 
   // virtual void TearDown() will be called after each test is run.
@@ -22,6 +19,8 @@ class LocationTest : public testing::Test {
   // you don't have to provide it.
   //
    virtual void TearDown() {
+     delete state;
+     delete manager;
    }
 
 };
@@ -30,7 +29,7 @@ class LocationTest : public testing::Test {
 // instead of TEST.
 
 // Tests the default c'tor.
-TEST_F(LocationTest, DefaultConstructor) {
+TEST_F(AntManagerTest, DefaultConstructor) {
   // You can access data in the test fixture here.
   EXPECT_EQ(0, 0);
 }

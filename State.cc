@@ -26,7 +26,7 @@ void State::setup() {
 	attackradius = sqrt((double)attackradius2);
 };
 
-State *getSampleState(int inRows, int inCols) {
+State* State::getSampleState(int inRows, int inCols) {
   State* ss = new State;
 
   ss->rows = inRows;
