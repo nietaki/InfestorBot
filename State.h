@@ -31,9 +31,8 @@ struct State {
 		/*
 		 Variables
 		 */
-		static State* _instance;
 		int rows, cols, turn, turns, noPlayers;
-		double attackradius2, spawnradius2, viewradius2;
+		int attackradius2, spawnradius2, viewradius2;
 		double attackradius, spawnradius, viewradius;
 		double loadtime, turntime;
 		std::vector<double> scores;
@@ -69,7 +68,8 @@ struct State {
 
 	public:
 
-//		static State* instance();
+		/* mainly for the unit tests */
+		static State* getSampleState(int inRows, int inCols);
 		State();
 		~State();
 

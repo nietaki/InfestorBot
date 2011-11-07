@@ -3,9 +3,6 @@
 using namespace std;
 
 
-//this is weird
-State* State::_instance = NULL;
-
 //constructor
 State::State() {
 	gameover = 0;
@@ -20,18 +17,36 @@ State::~State() {
 }
 ;
 
-//State* State::instance() {
-//	if (!State::_instance) {
-//		State::_instance = new State;
-//	}
-//	return _instance;
-//}
 
 //sets the state up
 void State::setup() {
 	grid = vector<vector<Square> > (rows, vector<Square> (cols, Square()));
+	viewradius = sqrt((double)viewradius2);
+	spawnradius = sqrt((double)spawnradius2);
+	attackradius = sqrt((double)attackradius2);
+};
+
+State *getSampleState(int inRows, int inCols) {
+  State* ss = new State;
+
+  ss->rows = inRows;
+  ss->cols = inCols;
+
+  ss->turns = 1000;
+
+  ss->attackradius2 = 6;
+  ss->spawnradius2 = 7; //FIXME: what was the meaning of spawnradius?
+  ss->viewradius2 = 55;
+  ss->loadtime = 10;
+  ss->turntime = 10;
+
+  ss->seed = 333;
+
+  ss->setup();
+
+  return ss;
 }
-;
+
 
 //resets all non-water squares to land and clears the bots ant vector
 void State::reset() {
@@ -185,13 +200,10 @@ istream& operator>>(istream &is, State &state) {
 				srand(state.seed);
 			}else if (inputType == "viewradius2") {
 				is >> state.viewradius2;
-				state.viewradius = sqrt(state.viewradius2);
 			} else if (inputType == "attackradius2") {
 				is >> state.attackradius2;
-				state.attackradius = sqrt(state.attackradius2);
 			} else if (inputType == "spawnradius2") {
 				is >> state.spawnradius2;
-				state.spawnradius = sqrt(state.spawnradius2);
 			} else if (inputType == "ready") //end of parameter input
 			{
 				state.timer.start();

@@ -18,7 +18,7 @@ make
 
 And to run the tests
 
-ctest
+ctest -V
 
 *Disclaimer*
 All the data is totally unencapsulated. For now I'll blame it on the challenge starting code,
