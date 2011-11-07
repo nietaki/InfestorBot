@@ -19,3 +19,7 @@ file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tests)
 #creating the tests
 add_executable(tests/location.test tests/location_test.cc)
 target_link_libraries(tests/location.test everything gtest_main)
+
+add_test(location 
+  #WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tests
+  tests/location.test)
