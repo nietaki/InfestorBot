@@ -13,6 +13,6 @@ add_executable(InfestorBot.run MyBot.cc)
 
 target_link_libraries(InfestorBot.run everything)
 
-
-add_executable(location_test tests/location_test.cc)
-target_link_libraries(location_test everything gtest_main)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tests)
+add_executable(tests/location.test tests/location_test.cc)
+target_link_libraries(tests/location.test everything gtest_main)

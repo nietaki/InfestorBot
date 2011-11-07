@@ -1,13 +1,9 @@
-
-
 #include "Location.h"
 #include "gtest/gtest.h"
 
 // To use a test fixture, derive a class from testing::Test.
 class QueueTest : public testing::Test {
- protected:  // You should make the members protected s.t. they can be
-             // accessed from sub-classes.
-  // Declares the variables your tests want to use.
+ protected:
 //  Queue<int> q0_;
 //  Queue<int> q1_;
 //  Queue<int> q2_;
@@ -25,8 +21,8 @@ class QueueTest : public testing::Test {
   // You should define it if there is cleanup work to do.  Otherwise,
   // you don't have to provide it.
   //
-  // virtual void TearDown() {
-  // }
+   virtual void TearDown() {
+   }
 
 };
 
