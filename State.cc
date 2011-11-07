@@ -91,6 +91,14 @@ Location State::getLocation(const Location &loc, int direction) {
 }
 ;
 
+bool State::onBoard(const Location & inLocation)
+{
+  if(inLocation.row >= 0 && inLocation.row < rows &&
+     inLocation.col >= 0 && inLocation.col < cols)
+    return true;
+  return false;
+}
+
 /*
 This function will update update the lastSeen value for any squares currently
 visible by one of your live ants.

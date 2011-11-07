@@ -1,23 +1,33 @@
 #include "gtest/gtest.h"
-#include "State.h"
 #include "AntManager.h"
+//#include "State.h"
 
-// To use a test fixture, derive a class from testing::Test.
+// in the your_class_test.cc file:
+
+/* we make one of the protected methods public for testing */
+//class TestableAntManager : public AntManager {
+//  public:
+//    TestableAntManager(State* inState) : AntManager(inState) {
+//
+//    }
+//
+//	public: using AntManager::nextTurn; // changes access rights
+//};
+
+
 class AntManagerTest : public testing::Test {
+
   protected:
     State* state;
     AntManager* manager;
-  // virtual void SetUp() will be called before each test is run.  You
-  // should define it if you need to initialize the varaibles.
-  // Otherwise, this can be skipped.
+
   virtual void SetUp() {
     state = State::getSampleState(25, 100);
+    manager = new AntManager(state);
+
   }
 
-  // virtual void TearDown() will be called after each test is run.
-  // You should define it if there is cleanup work to do.  Otherwise,
-  // you don't have to provide it.
-  //
+
    virtual void TearDown() {
      delete state;
      delete manager;
@@ -29,7 +39,22 @@ class AntManagerTest : public testing::Test {
 // instead of TEST.
 
 // Tests the default c'tor.
-TEST_F(AntManagerTest, DefaultConstructor) {
-  // You can access data in the test fixture here.
-  EXPECT_EQ(0, 0);
+
+TEST_F(AntManagerTest, ShouldConstructCorrectly) {
+
+}
+
+TEST_F(AntManagerTest, ShouldHaveEmptyWorkingState) {
+  Square sq = state->getSquare(Location(3, 4));
+  EXPECT_FALSE(sq.isFood);
+}
+
+TEST_F(AntManagerTest, ShouldPositivelyEnsureNewAnt) {
+  int added = manager->ensureAnt(Location(5, 54));
+  EXPECT_EQ(added, AntManager::SUCCESS);
+}
+
+TEST_F(AntManagerTest, ShouldRespectfullyDeclineAntOutOfRangeInEnsureAnt) {
+  int added = manager->ensureAnt(Location(1000, 54));
+  EXPECT_EQ(added, AntManager::ANT_LOCATION_INVALID);
 }

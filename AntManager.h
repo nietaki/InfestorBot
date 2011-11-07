@@ -27,30 +27,30 @@ class AntManager {
 		Bug* bug;
 		State* state;
 		AntGrid antGrid;
-		static AntManager* _instance;
 
 	public:
+		static const int ANT_PRESENT = 5;
+		static const int ANT_ABSENT = 4;
+		static const int ANT_LOCATION_INVALID = 7;
+		static const int SUCCESS = 0;
+
 		AntManager(State* inState);
-//		static AntManager *instance();
-
-		//setup is always a pain ;)
-
 		/**
 		 * returns a reference to the smart pointer in the given location
 		 */
 		AntPtr getAnt(Location inLoc);
 		AntPtr& getAntRef(Location inLoc);
 
-		void ensureAnt(Location inLoc);
-		void remove(AntPtr inAnt);
-		void remove(Location inLoc);
-		void makeMove(Location fromLoc, int direction);
+		int ensureAnt(Location inLoc);
+		int remove(AntPtr inAnt);
+		int remove(Location inLoc);
+		int makeMove(Location fromLoc, int direction);
 		AntSet* getAnts();
 
 		/**
 		 * is invoked at the beginning of every turn, after the situation has been parsed, before making any move
 		 */
-		void nextTurn(int moveNo);
+		int nextTurn(int moveNo);
 
 		//TODO and Buckets and the accessors
 

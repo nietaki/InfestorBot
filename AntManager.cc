@@ -7,9 +7,14 @@
 
 #include "AntManager.h"
 
-AntManager* AntManager::_instance = NULL;
+
+const int AntManager::ANT_PRESENT;
+const int AntManager::ANT_ABSENT;
+const int AntManager::ANT_LOCATION_INVALID;
+const int AntManager::SUCCESS;
 
 AntManager::AntManager(State* inState) {
+
 	state = inState;
 
 	bug = Bugger::getBug();
@@ -30,8 +35,9 @@ AntPtr& AntManager::getAntRef(Location inLoc ) {
 }
 
 
-void AntManager::ensureAnt(Location inLoc) {
-	//TODO: add ensureAnt once AntPtrs are where they should be
+int AntManager::ensureAnt(Location inLoc) {
+  if(! state->onBoard(inLoc))
+    return ANT_LOCATION_INVALID;
 	AntPtr& antPtr = getAntRef(inLoc);
 	if(!antPtr){
 		//if there isn't any ant there yet;
@@ -39,32 +45,38 @@ void AntManager::ensureAnt(Location inLoc) {
 		antPtr = newAnt;
 		ants.insert(newAnt);
 		(*bug) << "Ant " << newAnt << " added to " << newAnt->getLocation() << std::endl;
+		return SUCCESS;
 	}else{
 		(*bug) << "Ant couldn't be added to " << inLoc << " an ant already present" << std::endl;
+		return ANT_PRESENT;
 	}
 }
 
 
 
-void AntManager::remove(Location inLoc){
+int AntManager::remove(Location inLoc){
 	AntPtr& antPtr = getAntRef(inLoc);
 	if(antPtr){
 		ants.erase(antPtr);
 		antPtr.reset();
 		(*bug) << "AntManager::remove(Location) removed Ant at Location " << inLoc << " \n";
+		return SUCCESS;
 	}else{
 		(*bug) << "AntManager::remove(Location) wanted to remove a non-existent Ant at Location " << inLoc << " \n";
+		return ANT_ABSENT;
 	}
 
 }
 
-void AntManager::remove(AntPtr inAnt) {
+int AntManager::remove(AntPtr inAnt) {
 	if(inAnt){
-		remove(inAnt->getLocation());
+		return remove(inAnt->getLocation());
+	}else{
+	  return ANT_LOCATION_INVALID;
 	}
 }
 
-void AntManager::makeMove(Location fromLoc, int direction) {
+int AntManager::makeMove(Location fromLoc, int direction) {
 	//FIXME makeMove isnt current anymore
 	//let's get all the needed objects
 
@@ -90,6 +102,8 @@ void AntManager::makeMove(Location fromLoc, int direction) {
 	//and remove it from the current one
 	getAntRef(fromLoc).reset();
 	state->makeMove(fromLoc, direction);
+
+	return SUCCESS;
 }
 
 
@@ -101,7 +115,7 @@ void AntManager::makeMove(Location fromLoc, int direction) {
  *
  * in our current case, ensuring ants read in by the state
  */
-void AntManager::nextTurn(int moveNo) {
+int AntManager::nextTurn(int moveNo) {
 	std::vector<Location>::iterator it;
 	for(it = state->myAnts.begin(); it != state->myAnts.end(); it++){
 		ensureAnt(*it);
