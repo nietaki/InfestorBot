@@ -14,7 +14,7 @@ const int EAST = 1;
 const int SOUTH = 2;
 const int WEST = 3;
 
-bool correctDirection(int d);
+bool isCorrectDirection(int d);
 
 /*
  struct for representing locations in the grid.

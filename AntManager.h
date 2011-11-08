@@ -32,6 +32,8 @@ class AntManager {
 		static const int ANT_PRESENT = 5;
 		static const int ANT_ABSENT = 4;
 		static const int ANT_LOCATION_INVALID = 7;
+		static const int DIRECTION_INVALID = 8;
+		static const int TARGET_LOCATION_INVALID = 9;
 		static const int SUCCESS = 0;
 
 		AntManager(State* inState);

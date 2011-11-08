@@ -6,7 +6,7 @@
  */
 #include "Location.h"
 
-bool correctDirection(int d){
+bool isCorrectDirection(int d){
   return (d >= 0 && d< TDIRECTIONS);
 }
 
