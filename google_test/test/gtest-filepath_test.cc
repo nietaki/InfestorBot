@@ -65,7 +65,7 @@ namespace {
 // gtest-port.h.
 
 // Windows CE doesn't have the remove C function.
-int remove(const char* path) {
+int removeAnt(const char* path) {
   LPCWSTR wpath = String::AnsiToUtf16(path);
   int ret = DeleteFile(wpath) ? 0 : -1;
   delete [] wpath;

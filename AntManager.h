@@ -42,8 +42,8 @@ class AntManager {
 		AntPtr& getAntRef(Location inLoc);
 
 		int ensureAnt(Location inLoc);
-		int remove(AntPtr inAnt);
-		int remove(Location inLoc);
+		int removeAnt(AntPtr inAnt);
+		int removeAnt(Location inLoc);
 		int makeMove(Location fromLoc, int direction);
 		AntSet* getAnts();
 

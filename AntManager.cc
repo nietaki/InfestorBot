@@ -54,7 +54,10 @@ int AntManager::ensureAnt(Location inLoc) {
 
 
 
-int AntManager::remove(Location inLoc){
+int AntManager::removeAnt(Location inLoc){
+  if(!state->onBoard(inLoc)){
+    return ANT_LOCATION_INVALID;
+  }
 	AntPtr& antPtr = getAntRef(inLoc);
 	if(antPtr){
 		ants.erase(antPtr);
@@ -68,9 +71,9 @@ int AntManager::remove(Location inLoc){
 
 }
 
-int AntManager::remove(AntPtr inAnt) {
+int AntManager::removeAnt(AntPtr inAnt) {
 	if(inAnt){
-		return remove(inAnt->getLocation());
+		return removeAnt(inAnt->getLocation());
 	}else{
 	  return ANT_LOCATION_INVALID;
 	}
@@ -120,7 +123,7 @@ int AntManager::nextTurn(int moveNo) {
 	for(it = state->myAnts.begin(); it != state->myAnts.end(); it++){
 		ensureAnt(*it);
 	}
-
+	return 0;
 }
 
 

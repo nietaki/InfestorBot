@@ -6,6 +6,10 @@
  */
 #include "Location.h"
 
+bool correctDirection(int d){
+  return (d >= 0 && d< TDIRECTIONS);
+}
+
 Location::Location() {
 	row = col = 0;
 

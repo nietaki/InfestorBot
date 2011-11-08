@@ -9,6 +9,12 @@ const int TDIRECTIONS = 4;
 const char CDIRECTIONS[4] = { 'N', 'E', 'S', 'W' };
 const int DIRECTIONS[4][2] = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } }; //{N, E, S, W}
 
+const int NORTH = 0;
+const int EAST = 1;
+const int SOUTH = 2;
+const int WEST = 3;
+
+bool correctDirection(int d);
 
 /*
  struct for representing locations in the grid.
