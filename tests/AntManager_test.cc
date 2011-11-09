@@ -126,6 +126,12 @@ TEST_F(AntManagerTest, ShouldEndureMovingInAWrongDirection) {
 }
 
 TEST_F(AntManagerTest, ShouldEndureMovingToWater) {
+//  for(int i=0; i<state->rows; i++){
+//    for(int j=0; j<state->cols; j++){
+//        state->grid[i][j].isWater = true;
+//    }
+//  }
+
   state->grid[5][5].isWater = true;
   Location location = Location(4, 5);
   int ensured = manager->ensureAnt(location);
