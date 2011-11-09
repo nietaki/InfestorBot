@@ -12,6 +12,8 @@ const int AntManager::ANT_PRESENT;
 const int AntManager::ANT_ABSENT;
 const int AntManager::ANT_LOCATION_INVALID;
 const int AntManager::SUCCESS;
+const int AntManager::DIRECTION_INVALID;
+const int AntManager::TARGET_LOCATION_INVALID;
 
 AntManager::AntManager(State* inState) {
 
@@ -80,22 +82,34 @@ int AntManager::removeAnt(AntPtr inAnt) {
 }
 
 int AntManager::makeMove(Location fromLoc, int direction) {
+  if(! isCorrectDirection(direction)){
+    (*bug) << "makeMove invoked with incorrect direction: " << direction << std::endl;
+    return DIRECTION_INVALID;
+
+  }
 	//FIXME makeMove isnt current anymore
 	//let's get all the needed objects
 
 	//all copies of smart_pointers
 	Location toLoc = state->getLocation(fromLoc, direction);
+
+	(*bug) << "MakeMove:" << std::endl;
+	(*bug) << "from " << fromLoc << std::endl;
+	(*bug) << "to " << toLoc << std::endl;
+
 	AntPtr fromAntPtr = getAnt(fromLoc);
 	AntPtr toAntPtr = getAnt(toLoc);
+
+	if(! fromAntPtr){
+	  (*bug) << "non-existant Ant in makeMove at " << fromLoc << std::endl;
+	  return ANT_ABSENT;
+	}
 
 	fromAntPtr->hasMovedOn(state->turn);
 	fromAntPtr->setLocation(toLoc);
 
-	(*bug) << "MakeMove:" << std::endl;
-//	(*bug) << (*fromAntPtr) << std::endl;
-	(*bug) << "from " << fromLoc << std::endl;
-	(*bug) << "to " << toLoc << std::endl;
 
+//	(*bug) << (*fromAntPtr) << std::endl;
 
 	//move ant on the Grid
 
