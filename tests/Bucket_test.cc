@@ -66,12 +66,33 @@ TEST_F(BucketTest, ShouldLetPopAny) {
   EXPECT_TRUE(any);
   EXPECT_EQ(1, bucket.size());
 }
+
 TEST_F(BucketTest, ShouldntLetPeekAnyOnEmptyBucket) {
   ASSERT_DEATH(bucket.peekAny(), "");
 }
+
 TEST_F(BucketTest, ShouldntLetPopAnyOnEmptyBucket) {
   ASSERT_DEATH(bucket.popAny(), "");
 }
+
+TEST_F(BucketTest, ShouldReturnAValidIteratorOnBegin) {
+  bucket.add(1);
+  Bucket<int>::iterator it = bucket.begin();
+  EXPECT_EQ(*it, 1);
+}
+
+TEST_F(BucketTest, ShouldAllowACorrectIteration) {
+  bucket.add(1);
+  Bucket<int>::iterator it;
+  int found;
+  for(it = bucket.begin(); it != bucket.end(); it++){
+    found = *it;
+  }
+  EXPECT_EQ(found, 1);
+}
+
+
+
 
 
 

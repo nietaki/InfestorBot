@@ -29,6 +29,7 @@ class Bucket {
       }
     }
   public:
+    typedef typename std::list<T>::const_iterator iterator;
     Bucket(int no=0):bucketNo(no){
 
     }
@@ -61,7 +62,7 @@ class Bucket {
       return itemList.front();
     }
 
-    //doesn't give any guarantee, should be called whe the Bucket isn't empty()
+    //doesn't give any guarantee, should be called only when the Bucket isn't empty()
     T popAny(){
       dieIfEmpty("popAny");
       T any = itemList.front();
@@ -69,6 +70,14 @@ class Bucket {
       return any;
     }
 
+    //the iterator, note, this is a CONST_iterator
+    iterator begin(){
+      return itemList.begin();
+    }
+
+    iterator end(){
+      return itemList.end();
+    }
 };
 
 
