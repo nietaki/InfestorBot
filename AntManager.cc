@@ -105,6 +105,11 @@ int AntManager::makeMove(Location fromLoc, int direction) {
 	  return ANT_ABSENT;
 	}
 
+	if(state->getSquare(fromLoc).isAccessible()) {
+	  (*bug) << "unable to move to inaccessible Square " << toLoc << std::endl;
+	  return TARGET_LOCATION_INVALID;
+	}
+
 	fromAntPtr->hasMovedOn(state->turn);
 	fromAntPtr->setLocation(toLoc);
 

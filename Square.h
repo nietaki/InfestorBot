@@ -19,21 +19,11 @@ struct Square {
 		std::vector<int> deadAnts;
 //		AntPtr antPtr;
 
-		Square() {
-			isVisible = isWater = isHill = isFood = 0;
-			ant = hillPlayer = -1;
-		}
-		;
+		Square();
 
 		//resets the information for the square except water information
-		void reset() {
-			isVisible = 0;
-			isHill = 0;
-			isFood = 0;
-			ant = hillPlayer = -1;
-			deadAnts.clear();
-		}
-		;
+		void reset();
+		bool isAccessible();
 };
 
 #endif //SQUARE_H_

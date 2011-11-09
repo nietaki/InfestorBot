@@ -59,21 +59,21 @@ TEST_F(AntManagerTest, ShouldPositivelyEnsureNewAnt) {
 
 TEST_F(AntManagerTest, ShouldRespectfullyDeclineAntOutOfRangeInEnsureAnt) {
   int added = manager->ensureAnt(Location(1000, 54));
-  EXPECT_EQ(added, AntManager::ANT_LOCATION_INVALID);
+  EXPECT_EQ(AntManager::ANT_LOCATION_INVALID, added);
 }
 
 TEST_F(AntManagerTest, ShouldEndureRemovingAbsentAntByLocation) {
   Location location = Location(4, 54);
   manager->ensureAnt(location);
   int removed = manager->removeAnt(Location(5, 54));
-  EXPECT_EQ(removed, AntManager::ANT_ABSENT);
+  EXPECT_EQ(AntManager::ANT_ABSENT, removed);
 }
 
 TEST_F(AntManagerTest, ShouldEndureRemoveAntByLocation) {
   Location location = Location(4, 54);
   manager->ensureAnt(location);
   int removed = manager->removeAnt(location);
-  EXPECT_EQ(removed, AntManager::SUCCESS);
+  EXPECT_EQ(AntManager::SUCCESS, removed);
 }
 
 TEST_F(AntManagerTest, ShouldEndureRemoveAntByPtr) {
@@ -81,7 +81,7 @@ TEST_F(AntManagerTest, ShouldEndureRemoveAntByPtr) {
   manager->ensureAnt(location);
   AntPtr ptr = manager->getAnt(location);
   int removed = manager->removeAnt(ptr);
-  EXPECT_EQ(removed, AntManager::SUCCESS);
+  EXPECT_EQ(AntManager::SUCCESS, removed);
 }
 
 TEST_F(AntManagerTest, ShouldEndureRemovingAbsentAntByPtr) {
@@ -90,13 +90,13 @@ TEST_F(AntManagerTest, ShouldEndureRemovingAbsentAntByPtr) {
   AntPtr ptr = manager->getAnt(location);
   int removed1 = manager->removeAnt(ptr);
   int removed2 = manager->removeAnt(ptr);
-  EXPECT_EQ(removed2, AntManager::ANT_ABSENT);
+  EXPECT_EQ(AntManager::ANT_ABSENT, removed2);
 }
 
 TEST_F(AntManagerTest, ShouldEndureRemovingAntFromWrongLocation) {
   Location location = Location(1000, 54);
   int removed = manager->removeAnt(location);
-  EXPECT_EQ(removed, AntManager::ANT_LOCATION_INVALID);
+  EXPECT_EQ(AntManager::ANT_LOCATION_INVALID, removed);
 }
 
 TEST_F(AntManagerTest, ShouldGetEmptyNonExistantAnt) {
@@ -109,20 +109,20 @@ TEST_F(AntManagerTest, ShouldMakeCorrectAntMove) {
   Location location = Location(10, 54);
   int ensured = manager->ensureAnt(location);
   int moved = manager->makeMove(location, NORTH);
-  EXPECT_EQ(moved, AntManager::SUCCESS);
+  EXPECT_EQ(AntManager::SUCCESS, moved);
 }
 
 TEST_F(AntManagerTest, ShouldEndureMovingInexistentAnt) {
   Location location = Location(10, 54);
   int moved = manager->makeMove(location, NORTH);
-  EXPECT_EQ(moved, AntManager::ANT_ABSENT);
+  EXPECT_EQ(AntManager::ANT_ABSENT, moved);
 }
 
 TEST_F(AntManagerTest, ShouldEndureMovingInAWrongDirection) {
   Location location = Location(10, 54);
   int ensured = manager->ensureAnt(location);
   int moved = manager->makeMove(location, 4);
-  EXPECT_EQ(moved, AntManager::DIRECTION_INVALID);
+  EXPECT_EQ(AntManager::DIRECTION_INVALID, moved);
 }
 
 TEST_F(AntManagerTest, ShouldEndureMovingToWater) {
@@ -131,7 +131,7 @@ TEST_F(AntManagerTest, ShouldEndureMovingToWater) {
   int ensured = manager->ensureAnt(location);
   int moved = manager->makeMove(location, SOUTH);
   //TODO have a function to check if square is invalid
-  EXPECT_EQ(moved, AntManager::TARGET_LOCATION_INVALID);
+  EXPECT_EQ(AntManager::TARGET_LOCATION_INVALID, moved);
 }
 
 
