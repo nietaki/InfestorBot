@@ -8,10 +8,17 @@
 #ifndef BUCKETMASTER_H_
 #define BUCKETMASTER_H_
 
+#include <boost/shared_ptr.hpp>
+#include "Bucket.h"
+
 template <typename T>
 class BucketMaster {
+protected:
+  int rows;
+  int cols;
+  int bucketSize;
 public:
-  BucketMaster();
+  BucketMaster(int inRows, int inCols, int inBucketSize);
   virtual ~BucketMaster();
 };
 

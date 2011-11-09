@@ -9,7 +9,7 @@ subdirs(google_test)
 #include_directories (${INFESTORBOT_SOURCE_DIR}) 
 include_directories (.)
 include_directories (google_test/include)
-add_library(everything Ant.cc AntManager.cc InfestorBot.cc Location.cc NotImplementedException.cc State.cc Bugger.cc Square.cc BucketMaster.cc)
+add_library(everything Ant.cc AntManager.cc InfestorBot.cc Location.cc NotImplementedException.cc State.cc Bugger.cc Square.cc BucketMaster.cc Bucket.cc)
 
 # add the executable
 add_executable(InfestorBot.run MyBot.cc)

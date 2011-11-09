@@ -8,7 +8,7 @@
 #include "BucketMaster.h"
 
 template<typename T>
-BucketMaster<T>::BucketMaster() {
+BucketMaster<T>::BucketMaster(int inRows, int inCols, int inBucketSize) {
   // TODO Auto-generated constructor stub
 
 }
