@@ -9,6 +9,8 @@
 #define BUCKET_H_
 
 #include <list>
+#include <stdlib.h>
+#include "Bugger.h"
 
 template <typename T>
 class BucketMaster; //yes, this is also neccessary
@@ -19,6 +21,13 @@ class Bucket {
   protected:
     int bucketNo;
     std::list<T> itemList;
+    void dieIfEmpty(const char* fromName){
+      if(empty()){
+        (*Bugger::getBug()) << "you tried to get sth from an empty Bucket in " << fromName << std::endl;
+        (*Bugger::getBug()) << "I will DIE now, mmkay?" << std::endl;
+        exit(1);
+      }
+    }
   public:
     Bucket(int no=0):bucketNo(no){
 
@@ -36,13 +45,29 @@ class Bucket {
     }
 
     void remove(T removedItem){
-
+      itemList.remove(removedItem);
     }
 
     int size(){
       return itemList.size();
     }
 
+    bool empty(){
+      return itemList.empty();
+    }
+
+    T peekAny(){
+      dieIfEmpty("peekAny");
+      return itemList.front();
+    }
+
+    //doesn't give any guarantee, should be called whe the Bucket isn't empty()
+    T popAny(){
+      dieIfEmpty("popAny");
+      T any = itemList.front();
+      itemList.pop_front();
+      return any;
+    }
 
 };
 

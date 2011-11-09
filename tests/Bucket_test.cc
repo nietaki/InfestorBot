@@ -44,4 +44,36 @@ TEST_F(BucketTest, ShouldRemoveItem) {
   EXPECT_EQ(0, bucket.size());
 }
 
+TEST_F(BucketTest, ShouldRecognizeEmpty){
+  EXPECT_TRUE(bucket.empty());
+  bucket.add(1);
+  bucket.remove(1);
+  EXPECT_TRUE(bucket.empty()) << "not empty after adding ad removing again";
+}
+
+TEST_F(BucketTest, ShouldLetPeekAny) {
+  bucket.add(1);
+  bucket.add(2);
+  int any = bucket.peekAny();
+  EXPECT_TRUE(any);
+  EXPECT_EQ(2, bucket.size());
+}
+
+TEST_F(BucketTest, ShouldLetPopAny) {
+  bucket.add(1);
+  bucket.add(2);
+  int any = bucket.popAny();
+  EXPECT_TRUE(any);
+  EXPECT_EQ(1, bucket.size());
+}
+TEST_F(BucketTest, ShouldntLetPeekAnyOnEmptyBucket) {
+  ASSERT_DEATH(bucket.peekAny(), "");
+}
+TEST_F(BucketTest, ShouldntLetPopAnyOnEmptyBucket) {
+  ASSERT_DEATH(bucket.popAny(), "");
+}
+
+
+
+
 
