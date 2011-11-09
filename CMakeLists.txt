@@ -34,7 +34,7 @@ file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tests)
 ## the filename searched for is created by appending
 ## "_test.cc" to the test name
 ## make sure to add all the new tests here
-set(TESTNAMES Location AntManager BucketMaster)
+set(TESTNAMES Location AntManager BucketMaster Bucket)
 
 foreach(testname ${TESTNAMES})
 	add_executable(tests/${testname}.test tests/${testname}_test.cc)

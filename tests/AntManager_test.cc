@@ -136,11 +136,18 @@ TEST_F(AntManagerTest, ShouldEndureMovingToWater) {
   Location location = Location(4, 5);
   int ensured = manager->ensureAnt(location);
   int moved = manager->makeMove(location, SOUTH);
-  //TODO have a function to check if square is invalid
   EXPECT_EQ(AntManager::TARGET_LOCATION_INACCESSIBLE, moved);
 }
 
+TEST_F(AntManagerTest, ShouldNotMoveOnAnotherAnt) {
 
+  Location location = Location(4, 5);
+  Location location2 = Location(5, 5);
+  manager->ensureAnt(location);
+  manager->ensureAnt(location2);
+  int moved = manager->makeMove(location, SOUTH);
+  EXPECT_EQ(AntManager::TARGET_LOCATION_OCCUPIED, moved);
+}
 
 
 

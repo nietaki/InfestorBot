@@ -29,11 +29,12 @@ class AntManager {
 		AntGrid antGrid;
 
 	public:
-		static const int ANT_PRESENT = 5;
 		static const int ANT_ABSENT = 4;
+		static const int ANT_PRESENT = 5;
 		static const int ANT_LOCATION_INVALID = 7;
 		static const int DIRECTION_INVALID = 8;
 		static const int TARGET_LOCATION_INACCESSIBLE = 9;
+		static const int TARGET_LOCATION_OCCUPIED = 10;
 		static const int SUCCESS = 0;
 
 		AntManager(State* inState);

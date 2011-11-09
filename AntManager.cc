@@ -14,6 +14,7 @@ const int AntManager::ANT_LOCATION_INVALID;
 const int AntManager::SUCCESS;
 const int AntManager::DIRECTION_INVALID;
 const int AntManager::TARGET_LOCATION_INACCESSIBLE;
+const int AntManager::TARGET_LOCATION_OCCUPIED;
 
 AntManager::AntManager(State* inState) {
 
@@ -100,6 +101,7 @@ int AntManager::makeMove(Location fromLoc, int direction) {
 	AntPtr fromAntPtr = getAnt(fromLoc);
 	AntPtr toAntPtr = getAnt(toLoc);
 
+
 	if(! fromAntPtr){
 	  (*bug) << "non-existant Ant in makeMove at " << fromLoc << std::endl;
 	  return ANT_ABSENT;
@@ -111,6 +113,15 @@ int AntManager::makeMove(Location fromLoc, int direction) {
 	}
 
 	fromAntPtr->hasMovedOn(state->turn);
+
+	if(toAntPtr){
+	  //the hasMovedOn is already invoked, because we don't want to have an infinite loop
+	  (*bug) << "we were about to stampede over a present ant at " << toLoc << std::endl;
+	  return TARGET_LOCATION_OCCUPIED;
+	}
+
+
+
 	fromAntPtr->setLocation(toLoc);
 
 

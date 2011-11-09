@@ -10,6 +10,9 @@
 
 #include <boost/shared_ptr.hpp>
 #include "Bucket.h"
+#include <vector>
+
+#define BUCKET_VECTOR_T std::vector<Bucket<T> >
 
 template <typename T>
 class BucketMaster {
@@ -17,6 +20,9 @@ protected:
   int rows;
   int cols;
   int bucketSize;
+  int xBucketCount, yBucketCount;
+  int totalBucketCount;
+  std::vector<T> buckets;
 public:
   BucketMaster(int inRows, int inCols, int inBucketSize);
   virtual ~BucketMaster();

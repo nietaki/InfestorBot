@@ -7,14 +7,5 @@
 
 #include "Bucket.h"
 
-template <typename T>
-Bucket<T>::Bucket() {
-  // TODO Auto-generated constructor stub
 
-}
-
-template <typename T>
-Bucket<T>::~Bucket() {
-  // TODO Auto-generated destructor stub
-}
 
