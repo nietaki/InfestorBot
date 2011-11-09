@@ -22,7 +22,7 @@ Square::Square() {
 }
 
 bool Square::isAccessible(){
-  return !isWater;
+  return !(isWater > 0);
 }
 
 

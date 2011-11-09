@@ -13,7 +13,7 @@ const int AntManager::ANT_ABSENT;
 const int AntManager::ANT_LOCATION_INVALID;
 const int AntManager::SUCCESS;
 const int AntManager::DIRECTION_INVALID;
-const int AntManager::TARGET_LOCATION_INVALID;
+const int AntManager::TARGET_LOCATION_INACCESSIBLE;
 
 AntManager::AntManager(State* inState) {
 
@@ -105,9 +105,9 @@ int AntManager::makeMove(Location fromLoc, int direction) {
 	  return ANT_ABSENT;
 	}
 
-	if(state->getSquare(fromLoc).isAccessible()) {
+	if(!state->getSquare(fromLoc).isAccessible()) {
 	  (*bug) << "unable to move to inaccessible Square " << toLoc << std::endl;
-	  return TARGET_LOCATION_INVALID;
+	  return TARGET_LOCATION_INACCESSIBLE;
 	}
 
 	fromAntPtr->hasMovedOn(state->turn);
