@@ -24,4 +24,7 @@ ctest -V
 All the data is totally unencapsulated. For now I'll blame it on the challenge starting code,
 and fix it when I have the time and nothing better to do. 
 
+== Code style ==
+Code style recommended by google for C++: indent = 2 spaces, spaces only
+
 #TODO: format the readme right, with 'preformatted' mark for commands
