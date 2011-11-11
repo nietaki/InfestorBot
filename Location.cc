@@ -30,3 +30,13 @@ std::ostream& operator<<(std::ostream &os, const Location &loc) {
 	return os;
 }
 
+void Location::dieIfOutOfBounds(int rows, int cols, const char* msg) const {
+  if(this->col >= cols || this->row >= rows){
+    (* Bugger::getBug()) << "received Location out of bounds: " << (*this) << "for the dimensions (rows, cols): (" << rows << ", " << cols << std::endl;
+    (* Bugger::getBug()) << "the location of this unforgivable accident is: " << msg  << std::endl;
+    exit(1);
+  }
+}
+
+
+

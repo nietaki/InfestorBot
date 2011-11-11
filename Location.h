@@ -2,6 +2,8 @@
 #define LOCATION_H_
 #include <iostream>
 #include <stdio.h>
+#include <stdlib.h>
+#include "Bugger.h"
 /*
  constants
  */
@@ -27,7 +29,7 @@ struct Location {
 		Location(int r, int c);
 
 		Location getBordering(int dir);
-
+		void dieIfOutOfBounds(int rows, int cols, const char* msg) const;
 };
 
 std::ostream& operator<<(std::ostream &os, const Location &loc);

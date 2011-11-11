@@ -31,6 +31,9 @@ TEST_F(BucketTest, ShouldConstructCorrectly) {
   EXPECT_EQ(0, bucket.getBucketNo());
   EXPECT_EQ(0, bucket.size());
 
+  Bucket<int> b2 = Bucket<int>(5);
+  EXPECT_EQ(5, b2.getBucketNo());
+
 }
 
 TEST_F(BucketTest, ShouldReceiveItem) {

@@ -31,7 +31,7 @@ class Bucket {
   public:
     typedef typename std::list<T>::const_iterator iterator;
     Bucket(int no=0):bucketNo(no){
-
+//      bucketNo = no;
     }
     virtual ~Bucket(){
 
