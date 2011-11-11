@@ -104,3 +104,11 @@ TEST_F(BucketMasterShould, GetOverflowNeighbouringBucketNo) {
   EXPECT_EQ(40, bm.getNeighbouringBucketNoByXY(9, 4, EAST));
 
 }
+
+TEST_F(BucketMasterShould, GetUnderflowNeighbouringBucketNo) {
+  BucketMaster<int> bm = BucketMaster<int>(100, 100, 10);
+  int startingBucketNo = 33;
+  EXPECT_EQ(94, bm.getNeighbouringBucketNoByXY(4, 0, NORTH));
+  EXPECT_EQ(49, bm.getNeighbouringBucketNoByXY(0, 4, WEST));
+
+}

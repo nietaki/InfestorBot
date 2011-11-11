@@ -104,8 +104,10 @@ public:
 
   int getNeighbouringBucketNoByXY(int X, int Y, int dir){
 
-    int destX = (X + DIRECTIONS[dir][1]) % xBucketCount;
-    int destY = (Y + DIRECTIONS[dir][0]) % yBucketCount;
+    int destX = (X + DIRECTIONS[dir][1]);
+    destX = (destX + xBucketCount) % xBucketCount;
+    int destY = (Y + DIRECTIONS[dir][0]);
+    destY = (destY + yBucketCount) % yBucketCount;
 
     return getBucketNoByXY(destX, destY);
   }
