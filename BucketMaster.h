@@ -86,7 +86,7 @@ public:
 
   }
 
-  Bucket<int>& getBucket(const Location& inLoc){
+  Bucket<T>& getBucket(const Location& inLoc){
     return buckets[getBucketNo(inLoc)];
   }
 

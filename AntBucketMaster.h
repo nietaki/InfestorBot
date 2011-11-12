@@ -15,6 +15,8 @@
 
 typedef std::list<boost::shared_ptr<Ant> >  AntList;
 typedef boost::shared_ptr<AntList> AntListPtr;
+typedef Bucket<boost::shared_ptr<Ant> > AntBucket;
+
 class AntBucketMaster : public BucketMaster<boost::shared_ptr<Ant> > {
   public:
     AntBucketMaster(int inRows, int inCols, int inBucketSize);
