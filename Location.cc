@@ -38,5 +38,17 @@ void Location::dieIfOutOfBounds(int rows, int cols, const char* msg) const {
   }
 }
 
+int Location::taxiDistance(const Location& other, int cols, int rows) {
+  int dist = 0;
+  int d1 = abs(col - other.col);
+  dist += std::min(d1, cols - d1);
+
+  int d2 = abs(row - other.row);
+  dist += std::min(d2, rows - d1);
+  return dist;
+}
+
+
+
 
 

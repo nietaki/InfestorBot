@@ -6,8 +6,8 @@ class LocationTest : public testing::Test {
  protected:
 //  Queue<int> q0_;
 //  Queue<int> q1_;
-//  Queue<int> q2_;
 
+  Location l;
   // virtual void SetUp() will be called before each test is run.  You
   // should define it if you need to initialize the varaibles.
   // Otherwise, this can be skipped.
@@ -31,6 +31,26 @@ class LocationTest : public testing::Test {
 
 // Tests the default c'tor.
 TEST_F(LocationTest, DefaultConstructor) {
-  // You can access data in the test fixture here.
   EXPECT_EQ(0, 0);
+}
+
+TEST_F(LocationTest, ShouldReturnCorrectDistanceInTrivialCase){
+
+  Location la(2, 2);
+  Location lb(2, 3);
+  Location l1(5, 3);
+  Location l2(2, 9);
+  EXPECT_EQ(1, la.taxiDistance(lb, 100, 100));
+  EXPECT_EQ(9, l1.taxiDistance(l2, 100, 100));
+  EXPECT_EQ(9, l2.taxiDistance(l1, 100, 100));
+
+}
+
+TEST_F(LocationTest, ShouldReturnCorrectDistanceInNonTrivialCase){
+
+  Location l1(4, 2);
+  Location l2(2, 9);
+  EXPECT_EQ(5, l1.taxiDistance(l2, 10, 10));
+  EXPECT_EQ(5, l2.taxiDistance(l1, 10, 10));
+
 }

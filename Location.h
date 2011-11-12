@@ -3,6 +3,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <algorithm>
 #include "Bugger.h"
 /*
  constants
@@ -35,6 +36,7 @@ struct Location {
 
 		Location getBordering(int dir);
 		void dieIfOutOfBounds(int rows, int cols, const char* msg) const;
+		int taxiDistance(const Location& otherLoc, int cols, int rows);
 };
 
 std::ostream& operator<<(std::ostream &os, const Location &loc);
