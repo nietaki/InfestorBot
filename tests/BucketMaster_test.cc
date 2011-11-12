@@ -6,7 +6,7 @@
  */
 
 #include "gtest/gtest.h"
-#include "../BucketMaster.h"
+#include "BucketMaster.h"
 
 class BucketMasterShould : public testing::Test {
 

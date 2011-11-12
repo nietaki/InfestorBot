@@ -9,7 +9,7 @@ subdirs(google_test)
 #include_directories (${INFESTORBOT_SOURCE_DIR}) 
 include_directories (.)
 include_directories (google_test/include)
-add_library(everything Ant.cc AntManager.cc InfestorBot.cc Location.cc NotImplementedException.cc State.cc Bugger.cc Square.cc BucketMaster.cc Bucket.cc)
+add_library(everything Ant.cc AntManager.cc InfestorBot.cc Location.cc NotImplementedException.cc State.cc Bugger.cc Square.cc BucketMaster.cc AntBucketMaster.cc Bucket.cc)
 
 # add the executable
 add_executable(InfestorBot.run MyBot.cc)
@@ -34,7 +34,7 @@ file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/tests)
 ## the filename searched for is created by appending
 ## "_test.cc" to the test name
 ## make sure to add all the new tests here
-set(TESTNAMES Location AntManager BucketMaster Bucket)
+set(TESTNAMES Location AntManager BucketMaster Bucket AntBucketMaster)
 
 foreach(testname ${TESTNAMES})
 	add_executable(tests/${testname}.test tests/${testname}_test.cc)
