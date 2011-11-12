@@ -88,8 +88,7 @@ double State::distance(const Location &loc1, const Location &loc2) {
 Location State::getLocation(const Location &loc, int direction) {
 	return Location((loc.row + DIRECTIONS[direction][0] + rows) % rows, (loc.col
 			+ DIRECTIONS[direction][1] + cols) % cols);
-}
-;
+};
 
 bool State::onBoard(const Location & inLocation)
 {

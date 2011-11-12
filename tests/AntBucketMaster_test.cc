@@ -22,3 +22,13 @@ class AntBucketMasterShould : public testing::Test {
 
 };
 
+TEST_F(AntBucketMasterShould, ConstructCorrectly) {
+  AntBucketMaster abm = AntBucketMaster(100, 100, 10);
+}
+
+TEST_F(AntBucketMasterShould, ReturnEmptyClosestList) {
+  AntBucketMaster abm = AntBucketMaster(100, 100, 10);
+  AntListPtr abp = abm.getClosestAntsFromSingleBucket(Location(5, 5), 10);
+
+  EXPECT_TRUE( abp->empty() );
+}
