@@ -90,9 +90,13 @@ TEST_F(BucketMasterShould, GetTrivialNeighbouringBucketNo) {
   BucketMaster<int> bm = BucketMaster<int>(100, 100, 10);
   int startingBucketNo = 33;
   EXPECT_EQ(23, bm.getNeighbouringBucketNoByXY(3, 3, NORTH));
+  EXPECT_EQ(24, bm.getNeighbouringBucketNoByXY(3, 3, NORTH_EAST));
   EXPECT_EQ(34, bm.getNeighbouringBucketNoByXY(3, 3, EAST));
+  EXPECT_EQ(44, bm.getNeighbouringBucketNoByXY(3, 3, SOUTH_EAST));
   EXPECT_EQ(43, bm.getNeighbouringBucketNoByXY(3, 3, SOUTH));
+  EXPECT_EQ(42, bm.getNeighbouringBucketNoByXY(3, 3, SOUTH_WEST));
   EXPECT_EQ(32, bm.getNeighbouringBucketNoByXY(3, 3, WEST));
+  EXPECT_EQ(22, bm.getNeighbouringBucketNoByXY(3, 3, NORTH_WEST));
 
 }
 

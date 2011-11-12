@@ -9,12 +9,17 @@
  */
 const int TDIRECTIONS = 4;
 const char CDIRECTIONS[4] = { 'N', 'E', 'S', 'W' };
-const int DIRECTIONS[4][2] = { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } }; //{N, E, S, W}
+const int DIRECTIONS[8][2] = {{ -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 }, //{N, E, S, W}
+                              { -1, 1 }, { 1, 1 }, { 1, -1 }, { -1, -1 }};// {NE, SE, SW, NW}
 
 const int NORTH = 0;
 const int EAST = 1;
 const int SOUTH = 2;
 const int WEST = 3;
+const int NORTH_EAST = 4;
+const int SOUTH_EAST = 5;
+const int SOUTH_WEST = 6;
+const int NORTH_WEST = 7;
 
 bool isCorrectDirection(int d);
 
