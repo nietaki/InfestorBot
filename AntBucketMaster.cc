@@ -39,21 +39,23 @@ AntListPtr AntBucketMaster::getClosestAntsFromSingleBucket(Location inLoc, int m
       }
     }
 
-
     list->insert(lit, currentAnt);
 
     //removing all the
     while(list->size() > max_count){
       list->pop_front();
     }
-
-    //TODO: I guess merging and sorting multiple lists when searching multiple Buckets is reasonable
   }
-
-
-
   return list;
 }
+
+
+AntListPtr AntBucketMaster::getClosestAnts(Location inLoc, int max_count) {
+  //TODO: I guess merging and sorting multiple lists when searching multiple Buckets is reasonable
+
+  //how about a nice while loop with an increasing counter with a tiny special case for the inLoc Bucket itself?
+}
+
 
 void AntBucketMaster::addAnt(Location inLoc, AntPtr inAnt) {
   AntBucket& b = getBucket(inLoc);

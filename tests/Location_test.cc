@@ -54,3 +54,5 @@ TEST_F(LocationTest, ShouldReturnCorrectDistanceInNonTrivialCase){
   EXPECT_EQ(5, l2.taxiDistance(l1, 10, 10));
 
 }
+
+//FIXME this test fails to cover all the cases, lucky thing the bug was found
