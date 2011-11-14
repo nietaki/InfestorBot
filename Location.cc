@@ -44,7 +44,7 @@ int Location::taxiDistance(const Location& other, int cols, int rows) {
   dist += std::min(d1, cols - d1);
 
   int d2 = abs(row - other.row);
-  dist += std::min(d2, rows - d1);
+  dist += std::min(d2, rows - d2);
   return dist;
 }
 

@@ -17,7 +17,6 @@ AntBucketMaster::~AntBucketMaster() {
 
 }
 
-//TODO check this test
 AntListPtr AntBucketMaster::getClosestAntsFromSingleBucket(Location inLoc, int max_count) {
   //this list will have the closest Ants at the end
   AntListPtr list = AntListPtr(new AntList());
@@ -28,23 +27,39 @@ AntListPtr AntBucketMaster::getClosestAntsFromSingleBucket(Location inLoc, int m
     AntPtr currentAnt = *it;
     AntList::iterator lit;
     lit = list->begin();
-    while(lit != list->end() && currentAnt->getLocation().taxiDistance(inLoc, cols, rows)
+    while(lit != list->end()){
+      //this has to be internal so that we don't get nullpointer problems
+      //if the expressions are evaluated in a different order than provided
+      if (currentAnt->getLocation().taxiDistance(inLoc, cols, rows)
                                                   <
                             (*lit)->getLocation().taxiDistance(inLoc, cols, rows)){
-      lit++;
+        lit++;
+      }else{
+        break;
+      }
     }
 
 
     list->insert(lit, currentAnt);
 
+    //removing all the
     while(list->size() > max_count){
       list->pop_front();
     }
+
+    //TODO: I guess merging and sorting multiple lists when searching multiple Buckets is reasonable
   }
 
 
 
   return list;
 }
+
+void AntBucketMaster::addAnt(Location inLoc, AntPtr inAnt) {
+  AntBucket& b = getBucket(inLoc);
+  b.add(inAnt);
+}
+
+
 
 

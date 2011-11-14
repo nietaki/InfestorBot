@@ -14,8 +14,7 @@ State::State() {
 //deconstructor
 State::~State() {
 	bug->close();
-}
-;
+};
 
 
 //sets the state up
@@ -35,7 +34,7 @@ State* State::getSampleState(int inRows, int inCols) {
   ss->turns = 1000;
 
   ss->attackradius2 = 6;
-  ss->spawnradius2 = 7; //FIXME: what was the meaning of spawnradius?
+  ss->spawnradius2 = 7;
   ss->viewradius2 = 55;
   ss->loadtime = 10;
   ss->turntime = 10;
