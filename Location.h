@@ -39,6 +39,7 @@ struct Location {
 		int taxiDistance(const Location& otherLoc, int cols, int rows);
 };
 
+
 std::ostream& operator<<(std::ostream &os, const Location &loc);
 
 #endif //LOCATION_H_

@@ -112,6 +112,15 @@ public:
     return getBucketNoByXY(destX, destY);
   }
 
+
+  int getNeighbouringBucketNoByNo(int no, int dir){
+    return getNeighbouringBucketNoByXY(getXByNo(no), getYByNo(no), dir);
+  }
+
+  Bucket<T>& getNeighbouringBucket(const Bucket<T>& inBucket, int dir){
+    return buckets[getNeighbouringBucketNoByNo(getXByNo(inBucket.getBucketNo()), dir)];
+  }
+
 };
 
 #endif /* BUCKETMASTER_H_ */

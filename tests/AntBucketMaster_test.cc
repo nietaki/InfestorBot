@@ -28,7 +28,7 @@ TEST_F(AntBucketMasterShould, ConstructCorrectly) {
 
 TEST_F(AntBucketMasterShould, ReturnEmptyClosestList) {
   AntBucketMaster abm = AntBucketMaster(100, 100, 10);
-  AntListPtr abp = abm.getClosestAntsFromSingleBucket(Location(5, 5), 10);
+  AntListPtr abp = abm.getClosestAntsFromSingleAutoBucket(Location(5, 5), 10);
 
   EXPECT_TRUE( abp->empty() );
 }
@@ -39,7 +39,7 @@ TEST_F(AntBucketMasterShould, AddAndReturnAntByLocation) {
   AntPtr ap = Ant::makeAnt(0, antLocation);
   abm.addAnt(antLocation, ap);
 
-  AntListPtr alp = abm.getClosestAntsFromSingleBucket(Location(15, 14), 1);
+  AntListPtr alp = abm.getClosestAntsFromSingleAutoBucket(Location(15, 14), 1);
 
   EXPECT_EQ(ap, (*alp->begin()) );
 }
@@ -50,7 +50,7 @@ TEST_F(AntBucketMasterShould, ReturnOneAntByLocationWhenNoMoreAvailable) {
   AntPtr ap = Ant::makeAnt(0, antLocation);
   abm.addAnt(antLocation, ap);
 
-  AntListPtr alp = abm.getClosestAntsFromSingleBucket(Location(15, 14), 10);
+  AntListPtr alp = abm.getClosestAntsFromSingleAutoBucket(Location(15, 14), 10);
 
   EXPECT_EQ(ap, (*alp->begin()) );
   EXPECT_EQ(1, alp->size() );
@@ -66,7 +66,7 @@ TEST_F(AntBucketMasterShould, ReturnAllAntsByLocationWhenNoMoreAvailable) {
   AntPtr ap2 = Ant::makeAnt(0, antLocation);
   abm.addAnt(antLocation2, ap2);
 
-  AntListPtr alp = abm.getClosestAntsFromSingleBucket(Location(15, 14), 10);
+  AntListPtr alp = abm.getClosestAntsFromSingleAutoBucket(Location(15, 14), 10);
 
   EXPECT_EQ(2, alp->size() );
 }
@@ -85,7 +85,7 @@ TEST_F(AntBucketMasterShould, ReturnNoMoreThanTheRequiredAmountOfAnts) {
   AntPtr ap3 = Ant::makeAnt(0, antLocation);
   abm.addAnt(antLocation3, ap3);
 
-  AntListPtr alp = abm.getClosestAntsFromSingleBucket(Location(15, 14), 2);
+  AntListPtr alp = abm.getClosestAntsFromSingleAutoBucket(Location(15, 14), 2);
 
   EXPECT_EQ(2, alp->size() );
 }
@@ -105,7 +105,7 @@ TEST_F(AntBucketMasterShould, ShouldReturnSortedAnts) {
   abm.addAnt(antLocation3, ap3);
 
   Location target = Location(15, 14);
-  AntListPtr alp = abm.getClosestAntsFromSingleBucket(target, 3);
+  AntListPtr alp = abm.getClosestAntsFromSingleAutoBucket(target, 3);
   AntPtr first, second, third;
   first = alp->front();
   alp->pop_front();

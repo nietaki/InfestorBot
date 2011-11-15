@@ -21,7 +21,8 @@ class AntBucketMaster : public BucketMaster<boost::shared_ptr<Ant> > {
   public:
     AntBucketMaster(int inRows, int inCols, int inBucketSize);
     virtual ~AntBucketMaster();
-    AntListPtr getClosestAntsFromSingleBucket(Location inLoc, int max_count);
+    AntListPtr getClosestAntsFromSingleAutoBucket(Location inLoc, int max_count);
+    AntListPtr getClosestAntsFromSingleBucket(Location inLoc, const AntBucket& inBucket, int max_count);
     AntListPtr getClosestAnts(Location inLoc, int max_count);
     void addAnt(Location inLoc, AntPtr inAnt);
 };

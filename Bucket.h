@@ -21,7 +21,7 @@ class Bucket {
   protected:
     int bucketNo;
     std::list<T> itemList;
-    void dieIfEmpty(const char* fromName){
+    void dieIfEmpty(const char* fromName) const{
       if(empty()){
         (*Bugger::getBug()) << "you tried to get sth from an empty Bucket in " << fromName << std::endl;
         (*Bugger::getBug()) << "I will DIE now, mmkay?" << std::endl;
@@ -37,7 +37,7 @@ class Bucket {
 
     }
 
-    int getBucketNo(){
+    int getBucketNo() const{
       return bucketNo;
     }
 
@@ -49,15 +49,15 @@ class Bucket {
       itemList.remove(removedItem);
     }
 
-    int size(){
+    int size() const{
       return itemList.size();
     }
 
-    bool empty(){
+    bool empty() const{
       return itemList.empty();
     }
 
-    T peekAny(){
+    T peekAny() const{
       dieIfEmpty("peekAny");
       return itemList.front();
     }
@@ -71,11 +71,11 @@ class Bucket {
     }
 
     //the iterator, note, this is a CONST_iterator
-    iterator begin(){
+    iterator begin() const{
       return itemList.begin();
     }
 
-    iterator end(){
+    iterator end() const{
       return itemList.end();
     }
 };
